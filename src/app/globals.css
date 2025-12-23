@@ -1,26 +1,45 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  /* Gruvbox Hard Contrast Base Palette */
+  --color-gruvbox-dark0: #1d2021;
+  --color-gruvbox-dark1: #282828;
+  --color-gruvbox-dark2: #3c3836;
+  --color-gruvbox-dark3: #504945;
+  --color-gruvbox-light1: #ebdbb2;
+  
+  /* Accent colors needed for the UI */
+  --color-gruvbox-yellow-bright: #fabd2f;
+  --color-gruvbox-green-bright: #b8bb26;
+  --color-gruvbox-aqua-bright: #8ec07c;
+
+  /* Fonts */
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui;
+  --font-mono: var(--font-fira-code), ui-monospace, monospace;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+@layer base {
+  *, ::after, ::before {
+    /* Usamos la variable nativa para evitar el error de @apply */
+    border-color: var(--color-gruvbox-dark3);
+  }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  body {
+    background-color: var(--color-gruvbox-dark0);
+    color: var(--color-gruvbox-light1);
+    @apply antialiased;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Scrollbar styling using variables */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-gruvbox-dark0);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-gruvbox-dark2);
+  border: 2px solid var(--color-gruvbox-dark0);
+  border-radius: 5px;
 }
