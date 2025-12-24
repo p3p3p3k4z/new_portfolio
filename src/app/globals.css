@@ -1,45 +1,97 @@
 @import "tailwindcss";
 
 @theme {
-  /* Gruvbox Hard Contrast Base Palette */
-  --color-gruvbox-dark0: #1d2021;
-  --color-gruvbox-dark1: #282828;
-  --color-gruvbox-dark2: #3c3836;
-  --color-gruvbox-dark3: #504945;
-  --color-gruvbox-light1: #ebdbb2;
-  
-  /* Accent colors needed for the UI */
-  --color-gruvbox-yellow-bright: #fabd2f;
-  --color-gruvbox-green-bright: #b8bb26;
-  --color-gruvbox-aqua-bright: #8ec07c;
+  /* --- Gruvbox Dark (Hard Contrast) --- */
+  --color-gruvbox-dark0: #1d2021; /* Hard contrast background */
+  --color-gruvbox-dark1: #282828; /* Standard dark background */
+  --color-gruvbox-dark2: #3c3836; /* UI elements */
+  --color-gruvbox-dark3: #504945; /* Comments/Secondary text */
+  --color-gruvbox-dark4: #665c54;
 
-  /* Fonts */
+  /* --- Gruvbox Light (Warm/Cream) - Based on your image --- */
+  --color-gruvbox-cream0: #fbf1c7; /* Light background */
+  --color-gruvbox-cream1: #ebdbb2; /* Light UI elements */
+  --color-gruvbox-cream2: #d5c4a1; /* Darker UI/Borders */
+  
+  /* --- Foregrounds (Text) --- */
+  --color-gruvbox-light0: #fbf1c7; /* Bright text (Dark mode) */
+  --color-gruvbox-light1: #ebdbb2; /* Standard text (Dark mode) */
+  --color-gruvbox-gray: #928374;
+  --color-gruvbox-dark-text: #282828; /* Main text (Light mode) */
+
+  /* --- Accent Colors (Normal) --- */
+  --color-gruvbox-red: #cc241d;
+  --color-gruvbox-green: #98971a;
+  --color-gruvbox-yellow: #d79921;
+  --color-gruvbox-blue: #458588;
+  --color-gruvbox-purple: #b16286;
+  --color-gruvbox-aqua: #689d6a;
+  --color-gruvbox-orange: #d65d0e;
+
+  /* --- Accent Colors (Bright) --- */
+  --color-gruvbox-red-bright: #fb4934;
+  --color-gruvbox-green-bright: #b8bb26;
+  --color-gruvbox-yellow-bright: #fabd2f;
+  --color-gruvbox-blue-bright: #83a598;
+  --color-gruvbox-purple-bright: #d3869b;
+  --color-gruvbox-aqua-bright: #8ec07c;
+  --color-gruvbox-orange-bright: #fe8019;
+
+  /* --- Fonts --- */
   --font-sans: var(--font-inter), ui-sans-serif, system-ui;
   --font-mono: var(--font-fira-code), ui-monospace, monospace;
 }
 
 @layer base {
+  /* We define semantic variables that change based on the class 'light' 
+    added by next-themes. 
+  */
+  :root {
+    /* DEFAULT: Dark Mode (Hard Contrast) */
+    --bg-page: var(--color-gruvbox-dark0);
+    --bg-card: var(--color-gruvbox-dark1);
+    --text-main: var(--color-gruvbox-light1);
+    --text-heading: var(--color-gruvbox-light0);
+    --border-color: var(--color-gruvbox-dark3);
+  }
+
+  /* LIGHT MODE OVERRIDES */
+  :root.light {
+    --bg-page: var(--color-gruvbox-cream0);    /* #fbf1c7 */
+    --bg-card: var(--color-gruvbox-cream1);    /* #ebdbb2 */
+    --text-main: var(--color-gruvbox-dark1);   /* #282828 */
+    --text-heading: var(--color-gruvbox-dark0);/* #1d2021 */
+    --border-color: var(--color-gruvbox-cream2);
+  }
+
   *, ::after, ::before {
-    /* Usamos la variable nativa para evitar el error de @apply */
-    border-color: var(--color-gruvbox-dark3);
+    border-color: var(--border-color);
   }
 
   body {
-    background-color: var(--color-gruvbox-dark0);
-    color: var(--color-gruvbox-light1);
-    @apply antialiased;
+    background-color: var(--bg-page);
+    color: var(--text-main);
+    transition: background-color 0.3s ease, color 0.3s ease;
+    @apply antialiased selection:bg-gruvbox-yellow-bright/30 selection:text-gruvbox-light0;
+  }
+  
+  h1, h2, h3, h4 {
+    color: var(--text-heading);
   }
 }
 
-/* Scrollbar styling using variables */
+/* Scrollbar styling */
 ::-webkit-scrollbar {
   width: 10px;
 }
 ::-webkit-scrollbar-track {
-  background: var(--color-gruvbox-dark0);
+  background: var(--bg-page);
 }
 ::-webkit-scrollbar-thumb {
   background: var(--color-gruvbox-dark2);
-  border: 2px solid var(--color-gruvbox-dark0);
+  border: 2px solid var(--bg-page);
   border-radius: 5px;
+}
+:root.light ::-webkit-scrollbar-thumb {
+  background: var(--color-gruvbox-cream2);
 }
