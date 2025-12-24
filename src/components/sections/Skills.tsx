@@ -1,54 +1,51 @@
-import { getTranslations } from 'next-intl/server';
-import { Code2, Terminal, Cpu, Globe } from 'lucide-react';
+'use client';
 
-export default async function Skills() {
-  const t = await getTranslations('Index');
+import React from 'react';
+import { useLanguage } from '@/context/LanguageContext'; 
 
-  const categories = [
-    {
-      title: 'Frontend',
-      color: 'text-gruvbox-aqua-bright',
-      skills: ['React', 'Next.js', 'Tailwind', 'TypeScript']
-    },
-    {
-      title: 'Backend',
-      color: 'text-gruvbox-green-bright',
-      skills: ['Python', 'PostgreSQL', 'Node.js', 'API Design']
-    },
-    {
-      title: 'Systems & DevOps',
-      color: 'text-gruvbox-orange-bright',
-      skills: ['Linux Arch/Debian', 'Docker', 'Bash Scripting', 'Git']
-    }
-  ];
+export default function Skills() {
+  const { content, lang } = useLanguage(); 
+  const categories = content.skills;
 
   return (
-    <section id="skills" className="py-24">
-      <div className="flex items-center gap-4 mb-16">
-        <h2 className="text-3xl font-bold text-gruvbox-light0">
-          <span className="text-gruvbox-yellow-bright font-mono mr-2">02.</span>
-          {t('techTitle')}
+    <section className="py-16 w-full">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <h2 className="text-3xl md:text-4xl font-bold mb-16 text-center text-gray-900 dark:text-white">
+          {lang === 'es' ? "Habilidades Técnicas" : "Technical Skills"}
         </h2>
-        <div className="h-[1px] bg-gruvbox-dark3 flex-grow" />
-      </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-        {categories.map((cat) => (
-          <div key={cat.title} className="bg-gruvbox-dark1 p-8 rounded-lg border border-gruvbox-dark3 hover:border-gruvbox-dark4 transition-all group">
-            <h3 className={`text-xl font-bold mb-6 flex items-center gap-3 ${cat.color}`}>
-              <Terminal size={20} />
-              {cat.title}
-            </h3>
-            <ul className="space-y-3">
-              {cat.skills.map((skill) => (
-                <li key={skill} className="flex items-center gap-2 text-gruvbox-light2 font-mono text-sm">
-                  <span className="text-gruvbox-gray">›</span>
-                  {skill}
-                </li>
-              ))}
-            </ul>
-          </div>
-        ))}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {categories.map((category, index) => (
+            <div 
+              key={index}
+              className="bg-white dark:bg-gray-800/40 rounded-xl p-6 border border-gray-100 dark:border-gray-700 hover:border-blue-500/30 transition-colors duration-300"
+            >
+              <h3 className="text-lg font-bold mb-6 text-gray-800 dark:text-gray-200 border-b border-gray-100 dark:border-gray-700 pb-2">
+                {category.title}
+              </h3>
+              
+              <div className="flex flex-wrap gap-3">
+                {category.skills.map((skill) => (
+                  <div 
+                    key={skill.name} 
+                    className="flex items-center gap-2 px-3 py-1.5 bg-gray-50 dark:bg-gray-700/50 rounded-md border border-gray-200 dark:border-gray-600"
+                  >
+                    {/* CAMBIO AQUÍ: Eliminada la lógica de invertDark */}
+                    <img 
+                      src={skill.icon} 
+                      alt={skill.name} 
+                      className="w-5 h-5 object-contain" 
+                    />
+                    <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                      {skill.name}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );

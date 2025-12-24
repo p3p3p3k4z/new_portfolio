@@ -7,7 +7,9 @@ import Image from 'next/image';
 import { Folder, Github, ArrowRight } from 'lucide-react';
 
 export default function ProjectCard({ project }: { project: Project }) {
-  const { t } = useLanguage();
+  // 1. Obtenemos el contenido UI para los botones (View more / Ver más)
+  const { content } = useLanguage();
+  const { buttons } = content.ui;
 
   if (!project) return null;
 
@@ -15,7 +17,7 @@ export default function ProjectCard({ project }: { project: Project }) {
     <div className="group relative flex flex-col h-full rounded-lg overflow-hidden border transition-all duration-500
       /* Bordes usando variables globales */
       border-[var(--border-color)]
-      /* Hover Naranja para ambos temas (se ve bien en los dos) */
+      /* Hover Naranja para ambos temas */
       hover:border-gruvbox-orange dark:hover:border-gruvbox-orange-bright
       hover:shadow-xl hover:-translate-y-1"
     >
@@ -30,11 +32,11 @@ export default function ProjectCard({ project }: { project: Project }) {
             className="object-cover transition-opacity duration-500"
           />
         )}
-        {/* Overlay más oscuro para asegurar legibilidad extrema al pasar el mouse */}
+        {/* Overlay más oscuro para legibilidad al hover */}
         <div className="absolute inset-0 bg-gruvbox-dark0/90 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
       </div>
 
-      {/* 2. FONDO SÓLIDO (Capa de color base) */}
+      {/* 2. FONDO SÓLIDO (Capa base) */}
       <div className="absolute inset-0 z-10 transition-opacity duration-500 group-hover:opacity-0 bg-[var(--bg-card)]" />
 
       {/* 3. CONTENIDO */}
@@ -71,18 +73,15 @@ export default function ProjectCard({ project }: { project: Project }) {
             {project.title}
           </h3>
 
-          {/* DESCRIPCIÓN */}
+          {/* DESCRIPCIÓN (CORREGIDO: Usamos la propiedad directa) */}
           <p className="text-sm mb-6 flex-grow line-clamp-3 leading-relaxed transition-colors duration-300
             text-[var(--text-main)]
             group-hover:text-gruvbox-light1"
           >
-            {t(project.descriptionKey)}
+            {project.description}
           </p>
 
-          {/* === ETIQUETAS (TAGS) === 
-             Usamos AZUL. En Gruvbox, el azul normal (#458588) es oscuro y se lee perfecto sobre crema.
-             El azul bright (#83a598) se lee perfecto sobre negro.
-          */}
+          {/* ETIQUETAS (TAGS) */}
           <div className="flex flex-wrap gap-2 mb-6">
             {project.technologies?.slice(0, 4).map((tech) => (
               <span 
@@ -95,7 +94,7 @@ export default function ProjectCard({ project }: { project: Project }) {
                   /* TEMA OSCURO: Azul Brillante */
                   dark:text-gruvbox-blue-bright dark:bg-gruvbox-blue/10 dark:border-gruvbox-blue/20
                   
-                  /* HOVER (Fondo negro): Aqua Brillante */
+                  /* HOVER */
                   group-hover:text-gruvbox-aqua-bright group-hover:bg-gruvbox-aqua-bright/10 group-hover:border-gruvbox-aqua-bright/30"
               >
                 {tech}
@@ -119,23 +118,16 @@ export default function ProjectCard({ project }: { project: Project }) {
               <Github size={20} />
             </a>
 
-            {/* === BOTÓN VER MÁS === 
-                Usamos ROJO como pediste. El rojo destaca muchísimo sobre crema.
-            */}
+            {/* BOTÓN VER MÁS (CORREGIDO: Usamos texto dinámico del contexto) */}
             <Link 
               href={`/projects/${project.id}`}
               className="flex items-center gap-2 text-sm font-bold transition-colors group/link
                 
-                /* TEMA CLARO: Rojo Oscuro */
                 text-gruvbox-red
-                
-                /* TEMA OSCURO: Rojo Brillante */
                 dark:text-gruvbox-red-bright
-                
-                /* HOVER: Naranja Brillante (Para que se note que lo tocaste) */
                 group-hover:text-gruvbox-orange-bright"
             >
-              {t('view-more') || 'Saber más'} 
+              {buttons.viewMore} 
               <ArrowRight size={16} className="transform group-hover/link:translate-x-1 transition-transform" />
             </Link>
           </div>

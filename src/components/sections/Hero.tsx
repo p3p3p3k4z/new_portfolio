@@ -1,64 +1,129 @@
 'use client';
 import { useLanguage } from '@/context/LanguageContext';
-import Image from 'next/image';
+import Typewriter from '@/components/ui/Typewriter';
+import { Github, Linkedin, Mail, FileText, Terminal } from 'lucide-react';
+// Importamos los datos estáticos (links, email) directamente
+import { profile } from '@/data/hero';
 
 export default function Hero() {
-  const { t } = useLanguage();
+  // Obtenemos el contenido traducido (ui) y el idioma actual (lang)
+  const { content, lang } = useLanguage();
+  const { hero } = content.ui;
+
+  // Roles dinámicos según el idioma para la animación
+  const roles = lang === 'es' ? [
+    'Ingeniero de Software',
+    'Entusiasta de Linux',
+    'Desarrollador Full Stack',
+    'DevOps Jr',
+    'Contribuidor Open Source'
+  ] : [
+    'Software Engineer',
+    'Linux Enthusiast',
+    'Full Stack Developer',
+    'DevOps Jr',
+    'Open Source Contributor'
+  ];
+
+  // Clase base para botones (Mantenida intacta)
+  const buttonBaseClass = "flex items-center gap-2 px-6 py-3 rounded transition-all group text-[var(--text-main)] border shadow-sm hover:-translate-y-0.5 " +
+    "bg-[var(--bg-card)] border-[var(--border-color)]";
 
   return (
-    <section className="min-h-[80vh] flex items-center py-10">
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center w-full">
+    <section className="min-h-[85vh] flex items-center justify-center py-20 relative overflow-hidden bg-transparent">
+      
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center w-full max-w-7xl mx-auto">
         
-        {/* Lado Izquierdo: Información Personal */}
-        <div className="space-y-6 animate-in fade-in slide-in-from-left-5 duration-1000">
-          <div className="space-y-2">
-            <p className="font-mono text-gruvbox-aqua-bright text-lg flex items-center gap-2">
-              <span className="text-gruvbox-gray">$</span> whoami
+        {/* === LADO IZQUIERDO: TEXTO === */}
+        <div className="space-y-8 animate-in fade-in slide-in-from-left-5 duration-1000 order-2 lg:order-1 text-center lg:text-left">
+          
+          <div className="space-y-4">
+            {/* Comando echo */}
+            <p className="font-mono text-gruvbox-green-bright text-lg flex items-center justify-center lg:justify-start gap-2">
+              <Terminal size={18} />
+              <span className="text-gruvbox-gray">echo</span> 
+              <span>&quot;{hero.greeting} World!&quot;</span>
             </p>
             
-            {/* Nombre en grande con estilo Gruvbox */}
-            <h1 className="text-7xl md:text-8xl font-black text-gruvbox-light0 tracking-tighter leading-none">
-              Mario <span className="text-gruvbox-yellow-bright">Dev</span>
+            {/* NOMBRE COMPLETO (Usamos profile.name para consistencia) */}
+            <h1 className="text-5xl md:text-7xl font-black text-[var(--text-heading)] tracking-tight leading-tight">
+              Mario Enrique <br />
+              <span className="text-gruvbox-green dark:text-gruvbox-green-bright">Ramírez Gallardo</span>
             </h1>
 
-            {/* Subtítulos / Roles - Estilo Terminal */}
-            <div className="flex flex-wrap gap-x-4 gap-y-2 font-mono text-gruvbox-orange-bright text-sm md:text-base border-l-2 border-gruvbox-dark3 pl-4 mt-4">
-              <span>Computer Engineer</span>
-              <span className="text-gruvbox-dark3">|</span>
-              <span>Linux Enthusiast</span>
-              <span className="text-gruvbox-dark3">|</span>
-              <span>DevOps Jr</span>
-              <span className="text-gruvbox-dark3">|</span>
-              <span>Full Stack Developer</span>
+            {/* ANIMACIÓN DE TÍTULOS */}
+            <div className="text-2xl md:text-3xl font-mono text-gruvbox-gray h-10 flex justify-center lg:justify-start items-center gap-2">
+              <span>$</span>
+              <div className="text-gruvbox-yellow dark:text-gruvbox-yellow-bright">
+                <Typewriter 
+                  words={roles} 
+                  typingSpeed={100} 
+                  deletingSpeed={50} 
+                  pauseTime={2000} 
+                />
+              </div>
             </div>
           </div>
 
-          {/* Descripción traducida */}
-          <p className="text-xl text-gruvbox-light2 max-w-xl leading-relaxed">
-            {t('hero-description')}
+          {/* DESCRIPCIÓN (Viene del Contexto) */}
+          <p className="text-lg text-[var(--text-main)] max-w-xl leading-relaxed mx-auto lg:mx-0">
+            {hero.description}
           </p>
 
-          {/* Botón de acción */}
-          <div className="pt-4">
+          {/* === BOTONES DE REDES SOCIALES === */}
+          <div className="flex flex-wrap gap-4 pt-4 justify-center lg:justify-start">
+            
+            {/* GitHub */}
             <a 
-              href="#projects" 
-              className="group relative inline-flex items-center justify-center px-8 py-3 font-black text-gruvbox-dark0 transition-all duration-200 bg-gruvbox-green-bright rounded-md hover:bg-gruvbox-green focus:outline-none"
+              href={profile.social.github} // Usa el link de data/general
+              target="_blank" 
+              rel="noopener noreferrer"
+              className={`${buttonBaseClass} hover:border-gruvbox-dark0 dark:hover:border-gruvbox-light1 hover:bg-gruvbox-light1/50 dark:hover:bg-gruvbox-dark2`}
             >
-              {t('explore-projects')}
+              <Github className="group-hover:scale-110 transition-transform" size={20} />
+              <span className="font-bold">GitHub</span>
             </a>
+
+            {/* LinkedIn */}
+            <a 
+              href={profile.social.linkedin} // Usa el link de data/general
+              target="_blank" 
+              rel="noopener noreferrer"
+              className={`${buttonBaseClass} hover:border-gruvbox-blue hover:text-gruvbox-blue hover:bg-gruvbox-blue/10`}
+            >
+              <Linkedin className="group-hover:scale-110 transition-transform" size={20} />
+              <span className="font-bold">LinkedIn</span>
+            </a>
+
+            {/* Email */}
+            <a 
+              href={`mailto:${profile.email}`} // Usa el email de data/general
+              className={`${buttonBaseClass} hover:border-gruvbox-red hover:text-gruvbox-red hover:bg-gruvbox-red/10`}
+            >
+              <Mail className="group-hover:scale-110 transition-transform" size={20} />
+              <span className="font-bold">Email</span>
+            </a>
+
+            {/* CV (Mantenemos tu lógica de doble archivo según idioma) */}
+            <a 
+              href={lang === 'es' ? '/newcv.pdf' : '/micv_ingles.pdf'} 
+              target="_blank"
+              className={`${buttonBaseClass} hover:border-gruvbox-green hover:text-gruvbox-green hover:bg-gruvbox-green/10`}
+            >
+              <FileText className="group-hover:scale-110 transition-transform" size={20} />
+              <span className="font-bold">{hero.ctaPrimary || "CV"}</span>
+            </a>
+
           </div>
         </div>
 
-        {/* Lado Derecho: Tu GIF de Tux */}
-        <div className="hidden lg:flex justify-center items-center animate-in fade-in zoom-in duration-1000">
-          <div className="relative w-80 h-80 group">
-            {/* Efecto de resplandor sutil detrás del GIF */}
-            <div className="absolute -inset-1 bg-gruvbox-aqua-bright/20 rounded-full blur-2xl group-hover:bg-gruvbox-yellow-bright/20 transition duration-1000"></div>
-            
+        {/* === LADO DERECHO: GIF === */}
+        <div className="order-1 lg:order-2 flex justify-center items-center animate-in fade-in zoom-in duration-1000 delay-200">
+          <div className="relative w-72 h-72 md:w-96 md:h-96 group">
             <img 
-              src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNHJqZ3R5Z3R5Z3R5Z3R5Z3R5Z3R5Z3R5Z3R5Z3R5Z3R5JmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZCZjdD1n/LMDye0ZSZmG6A/giphy.gif" 
+              src="https://media.tenor.com/X6oLkn9sBewAAAAj/sparklepandalana-penguin.gif" 
               alt="Tux Linux"
-              className="relative w-full h-full object-contain grayscale hover:grayscale-0 transition-all duration-500 transform group-hover:scale-105"
+              className="w-full h-full object-contain transition-all duration-500 hover:scale-105"
             />
           </div>
         </div>

@@ -4,39 +4,59 @@ import { useLanguage } from '@/context/LanguageContext';
 import { useTheme } from 'next-themes';
 import Link from 'next/link';
 import { 
-  Menu, 
-  X, 
-  Terminal, 
-  Sun, 
-  Moon, 
-  Languages, 
-  Code2, 
-  Briefcase, 
-  User, 
-  BookOpen, 
-  Download 
+  Menu, X, Terminal, Sun, Moon, Languages, 
+  Code2, Briefcase, User, BookOpen, Download 
 } from 'lucide-react';
+import { profile } from '@/data/hero'; // Importamos datos estáticos (CV links)
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
   const { theme, setTheme } = useTheme();
   
-  // Extraemos el estado global de idioma
-  const { lang, setLang, t } = useLanguage();
+  // 1. OBTENEMOS 'content' y 'lang' DEL NUEVO CONTEXTO
+  const { content, lang, setLang } = useLanguage();
+  const { navbar } = content.ui; // Extraemos textos del navbar
 
-  // Evitar errores de hidratación para componentes que dependen del cliente (Theme)
   useEffect(() => setMounted(true), []);
 
-  // Configuración de los botones con la paleta Gruvbox
+  // 2. DEFINIMOS LOS LINKS USANDO EL CONTENIDO DINÁMICO
   const navLinks = [
-    { name: t('nav-projects'), href: '#projects', icon: Code2, color: 'hover:bg-gruvbox-green-bright border-gruvbox-green' },
-    { name: t('nav-skills'), href: '#skills', icon: Terminal, color: 'hover:bg-gruvbox-yellow-bright border-gruvbox-yellow' },
-    { name: 'Experience', href: '#experience', icon: Briefcase, color: 'hover:bg-gruvbox-blue-bright border-gruvbox-blue' },
-    { name: 'Blog', href: '/blog', icon: BookOpen, color: 'hover:bg-gruvbox-purple-bright border-gruvbox-purple' },
-    { name: t('nav-about'), href: '#about', icon: User, color: 'hover:bg-gruvbox-aqua-bright border-gruvbox-aqua' },
+    { 
+      name: navbar.projects, // 'Proyectos' o 'Projects'
+      href: '#projects', 
+      icon: Code2, 
+      color: 'hover:bg-gruvbox-green-bright border-gruvbox-green' 
+    },
+    { 
+      name: navbar.skills, // 'Habilidades' o 'Skills'
+      href: '#skills', 
+      icon: Terminal, 
+      color: 'hover:bg-gruvbox-yellow-bright border-gruvbox-yellow' 
+    },
+    // Si tienes traducciones para Experience/Blog agrégalas a uiData en data/general.ts
+    // Por ahora los dejamos fijos o puedes agregarlos
+    { 
+      name: 'Experience', 
+      href: '#experience', 
+      icon: Briefcase, 
+      color: 'hover:bg-gruvbox-blue-bright border-gruvbox-blue' 
+    },
+    { 
+      name: 'Blog', 
+      href: '/blog', 
+      icon: BookOpen, 
+      color: 'hover:bg-gruvbox-purple-bright border-gruvbox-purple' 
+    },
+    { 
+      name: navbar.about, // 'Sobre mí' o 'About'
+      href: '#about', 
+      icon: User, 
+      color: 'hover:bg-gruvbox-aqua-bright border-gruvbox-aqua' 
+    },
     { 
       name: 'CV', 
+      // Usamos el link del PDF estático o dinámico según idioma
       href: lang === 'es' ? '/newcv.pdf' : '/micv_ingles.pdf', 
       icon: Download, 
       color: 'hover:bg-gruvbox-red-bright border-gruvbox-red' 
@@ -48,72 +68,87 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-gruvbox-dark0/95 backdrop-blur-md border-b border-gruvbox-dark3">
+    <nav className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md border-b transition-colors duration-300
+      bg-[var(--bg-page)]/95 border-[var(--border-color)]"
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16 items-center">
           
-          {/* Logo con Icono de Terminal */}
-          <Link href="/" className="p-2 bg-gruvbox-dark2 rounded-lg hover:border-gruvbox-aqua-bright transition-all border border-transparent flex items-center justify-center">
-            <Terminal className="text-gruvbox-aqua-bright w-6 h-6" />
+          {/* Logo */}
+          <Link 
+            href="/" 
+            className="font-mono text-lg font-bold group flex items-center gap-1"
+          >
+            <span className="text-gruvbox-green">m4r10@dev</span>
+            <span className="text-[var(--text-main)]">:</span>
+            <span className="text-gruvbox-blue">~</span>
+            <span className="text-[var(--text-main)]">$</span>
+            <span className="w-2 h-4 bg-gruvbox-gray opacity-50 animate-pulse ml-1"></span>
           </Link>
 
-          {/* Navegación para Escritorio */}
+          {/* Escritorio */}
           <div className="hidden xl:flex items-center gap-2">
             {navLinks.map((link) => (
               <Link 
                 key={link.name} 
                 href={link.href}
-                className={`flex items-center gap-2 px-3 py-1.5 border-b-2 bg-gruvbox-dark1 text-gruvbox-light1 text-[11px] font-black uppercase tracking-tighter transition-all hover:text-gruvbox-dark0 ${link.color}`}
+                className={`flex items-center gap-2 px-3 py-1.5 border-b-2 text-[11px] font-black uppercase tracking-tighter transition-all 
+                bg-[var(--bg-card)] text-[var(--text-main)] hover:text-gruvbox-dark0 
+                ${link.color}`}
               >
                 <link.icon size={14} />
                 {link.name}
               </Link>
             ))}
 
-            <div className="h-6 w-[1px] bg-gruvbox-dark3 mx-2" />
+            <div className="h-6 w-[1px] bg-[var(--border-color)] mx-2" />
 
-            {/* Switch de Idioma con Estado Global */}
+            {/* Switch Idioma */}
             <button 
               onClick={handleLanguageToggle}
-              className="flex items-center gap-2 px-3 py-1.5 bg-gruvbox-dark2 border border-gruvbox-orange text-gruvbox-orange-bright text-[10px] font-bold rounded hover:bg-gruvbox-orange-bright hover:text-gruvbox-dark0 transition-all uppercase"
+              className="flex items-center gap-2 px-3 py-1.5 border border-gruvbox-orange text-gruvbox-orange-bright text-[10px] font-bold rounded hover:bg-gruvbox-orange-bright hover:text-gruvbox-dark0 transition-all uppercase
+              bg-[var(--bg-card)]"
             >
               <Languages size={14} />
               {lang === 'en' ? 'EN' : 'ES'}
             </button>
 
-            {/* Switch de Tema */}
+            {/* Switch Tema */}
             <button 
               onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-              className="p-2 text-gruvbox-yellow-bright hover:bg-gruvbox-dark2 rounded-md transition-colors"
+              className="p-2 text-gruvbox-yellow-bright hover:bg-[var(--bg-card)] rounded-md transition-colors"
+              aria-label="Toggle Theme"
             >
-              {mounted && (theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />)}
+              {mounted && (theme === 'dark' ? <Sun size={18} /> : <Moon size={18} className="text-gruvbox-dark0" />)}
             </button>
           </div>
 
-          {/* Botón para Menú Móvil */}
+          {/* Móvil */}
           <div className="xl:hidden flex items-center gap-4">
-            <button onClick={() => setIsOpen(!isOpen)} className="text-gruvbox-light1 p-2">
+            <button onClick={() => setIsOpen(!isOpen)} className="text-[var(--text-main)] p-2">
               {isOpen ? <X size={28} /> : <Menu size={28} />}
             </button>
           </div>
         </div>
       </div>
 
-      {/* Menú Móvil (Overlay) */}
+      {/* Menú Móvil Overlay */}
       {isOpen && (
-        <div className="xl:hidden bg-gruvbox-dark1 border-b border-gruvbox-dark3 p-4 space-y-2">
+        <div className="xl:hidden border-b p-4 space-y-2
+          bg-[var(--bg-page)] border-[var(--border-color)]"
+        >
           {navLinks.map((link) => (
             <Link
               key={link.name}
               href={link.href}
               onClick={() => setIsOpen(false)}
-              className={`flex items-center gap-4 px-4 py-3 border-l-4 font-bold text-gruvbox-light1 ${link.color.replace('hover:', 'bg-')}/10`}
+              className={`flex items-center gap-4 px-4 py-3 border-l-4 font-bold text-[var(--text-main)] ${link.color.replace('hover:', 'bg-')}/10`}
             >
               <link.icon size={18} />
               {link.name}
             </Link>
           ))}
-          <div className="pt-4 border-t border-gruvbox-dark3">
+          <div className="pt-4 border-t border-[var(--border-color)]">
             <button 
               onClick={handleLanguageToggle}
               className="w-full flex justify-center items-center gap-2 py-3 border border-gruvbox-orange text-gruvbox-orange-bright rounded font-bold uppercase text-xs"

@@ -1,22 +1,24 @@
 'use client';
 
 import { useLanguage } from '@/context/LanguageContext';
-import { projectsData } from '@/data/projects';
 import ProjectCard from '@/components/ui/ProjectCard';
 import Link from 'next/link';
 
 export default function ProjectsSection() {
-  const { t } = useLanguage();
+  // 1. Obtenemos todo el contenido ya traducido del contexto
+  const { content } = useLanguage();
+  
+  // Destructuramos para facilitar el uso
+  const { projects, ui } = content;
 
-  // 1. BLINDAJE DE DATOS
-  // Si projectsData es undefined o null por alguna razón, usamos un array vacío para evitar el crash.
-  const safeData = projectsData || [];
-
-  // 2. FILTRADO
-  // Filtramos los destacados y tomamos los primeros 6.
+  // 2. BLINDAJE Y FILTRADO
+  // 'projects' ya es el array correspondiente al idioma seleccionado.
+  const safeData = projects || [];
+  
+  // Filtramos los destacados (featured: true)
   const featuredProjects = safeData.filter(p => p.featured).slice(0, 6);
 
-  // Si no hay proyectos, podemos mostrar un mensaje o simplemente no renderizar la grid
+  // Estado vacío por seguridad
   if (featuredProjects.length === 0) {
     return (
       <section id="projects" className="py-20 text-center text-gruvbox-gray">
@@ -35,7 +37,8 @@ export default function ProjectsSection() {
             text-gruvbox-orange dark:text-gruvbox-orange-bright">
             01.
           </span>
-          {t('projects-title')}
+          {/* Usamos el título desde uiData */}
+          {ui.sectionTitles.projects}
         </h2>
         <div className="h-[1px] bg-[var(--border-color)] w-full opacity-50" />
       </div>
@@ -43,13 +46,12 @@ export default function ProjectsSection() {
       {/* Grid de Proyectos */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
         {featuredProjects.map((project, index) => (
-          // Importante: Asegurarse de que project.id exista
           <div 
             key={project.id || index} 
             className="animate-in fade-in zoom-in duration-500" 
             style={{ animationDelay: `${index * 100}ms` }}
           >
-            {/* Aquí pasamos la prop 'project' que espera el componente Card */}
+            {/* ProjectCard recibe el objeto project que ya tiene textos en el idioma correcto */}
             <ProjectCard project={project} />
           </div>
         ))}
@@ -63,7 +65,8 @@ export default function ProjectsSection() {
             border-gruvbox-yellow text-gruvbox-yellow hover:bg-gruvbox-yellow hover:text-gruvbox-dark0
             dark:border-gruvbox-yellow-bright dark:text-gruvbox-yellow-bright dark:hover:bg-gruvbox-yellow-bright"
         >
-          {t('explore-projects')}
+          {/* Usamos el texto del botón secundario del Hero ("Ver Proyectos") o View More */}
+          {ui.hero.ctaSecondary} 
         </Link>
       </div>
     </section>
