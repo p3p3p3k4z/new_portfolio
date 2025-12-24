@@ -7,57 +7,59 @@ import {
   Menu, X, Terminal, Sun, Moon, Languages, 
   Code2, Briefcase, User, BookOpen, Download 
 } from 'lucide-react';
-import { profile } from '@/data/hero'; // Importamos datos estáticos (CV links)
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
   const { theme, setTheme } = useTheme();
   
-  // 1. OBTENEMOS 'content' y 'lang' DEL NUEVO CONTEXTO
+  // 1. OBTENEMOS 'content' y 'lang'
   const { content, lang, setLang } = useLanguage();
-  const { navbar } = content.ui; // Extraemos textos del navbar
+  
+  // 2. EXTRAEMOS DATOS DE LA NUEVA ESTRUCTURA
+  // 'sections' tiene las traducciones del menú
+  // 'hero' tiene la ruta correcta del CV (cvFile)
+  const { sections, hero } = content;
+  const { navbar } = sections;
 
   useEffect(() => setMounted(true), []);
 
-  // 2. DEFINIMOS LOS LINKS USANDO EL CONTENIDO DINÁMICO
+  // 3. DEFINIMOS LOS LINKS DINÁMICOS
   const navLinks = [
     { 
-      name: navbar.projects, // 'Proyectos' o 'Projects'
+      name: navbar.projects, 
       href: '#projects', 
       icon: Code2, 
       color: 'hover:bg-gruvbox-green-bright border-gruvbox-green' 
     },
     { 
-      name: navbar.skills, // 'Habilidades' o 'Skills'
+      name: navbar.skills, 
       href: '#skills', 
       icon: Terminal, 
       color: 'hover:bg-gruvbox-yellow-bright border-gruvbox-yellow' 
     },
-    // Si tienes traducciones para Experience/Blog agrégalas a uiData en data/general.ts
-    // Por ahora los dejamos fijos o puedes agregarlos
     { 
-      name: 'Experience', 
+      name: navbar.experience, // Ahora usa la traducción (Experiencia / Experience)
       href: '#experience', 
       icon: Briefcase, 
       color: 'hover:bg-gruvbox-blue-bright border-gruvbox-blue' 
     },
     { 
-      name: 'Blog', 
+      name: navbar.blog, // Ahora usa la traducción
       href: '/blog', 
       icon: BookOpen, 
       color: 'hover:bg-gruvbox-purple-bright border-gruvbox-purple' 
     },
     { 
-      name: navbar.about, // 'Sobre mí' o 'About'
+      name: navbar.about, 
       href: '#about', 
       icon: User, 
       color: 'hover:bg-gruvbox-aqua-bright border-gruvbox-aqua' 
     },
     { 
       name: 'CV', 
-      // Usamos el link del PDF estático o dinámico según idioma
-      href: lang === 'es' ? '/newcv.pdf' : '/micv_ingles.pdf', 
+      // 4. CORRECCIÓN: Usamos hero.cvFile que ya trae el PDF correcto según idioma
+      href: hero.cvFile, 
       icon: Download, 
       color: 'hover:bg-gruvbox-red-bright border-gruvbox-red' 
     },
@@ -92,6 +94,8 @@ export default function Navbar() {
               <Link 
                 key={link.name} 
                 href={link.href}
+                // Si es el link del CV (descarga), le agregamos target blank
+                target={link.name === 'CV' ? '_blank' : undefined}
                 className={`flex items-center gap-2 px-3 py-1.5 border-b-2 text-[11px] font-black uppercase tracking-tighter transition-all 
                 bg-[var(--bg-card)] text-[var(--text-main)] hover:text-gruvbox-dark0 
                 ${link.color}`}
@@ -142,6 +146,7 @@ export default function Navbar() {
               key={link.name}
               href={link.href}
               onClick={() => setIsOpen(false)}
+              target={link.name === 'CV' ? '_blank' : undefined}
               className={`flex items-center gap-4 px-4 py-3 border-l-4 font-bold text-[var(--text-main)] ${link.color.replace('hover:', 'bg-')}/10`}
             >
               <link.icon size={18} />

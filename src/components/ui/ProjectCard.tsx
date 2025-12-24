@@ -7,9 +7,9 @@ import Image from 'next/image';
 import { Folder, Github, ArrowRight } from 'lucide-react';
 
 export default function ProjectCard({ project }: { project: Project }) {
-  // 1. Obtenemos el contenido UI para los botones (View more / Ver más)
+  // 1. CORRECCIÓN: Ahora accedemos a 'sections' en lugar de 'ui'
   const { content } = useLanguage();
-  const { buttons } = content.ui;
+  const { buttons } = content.sections; 
 
   if (!project) return null;
 
@@ -73,7 +73,7 @@ export default function ProjectCard({ project }: { project: Project }) {
             {project.title}
           </h3>
 
-          {/* DESCRIPCIÓN (CORREGIDO: Usamos la propiedad directa) */}
+          {/* DESCRIPCIÓN */}
           <p className="text-sm mb-6 flex-grow line-clamp-3 leading-relaxed transition-colors duration-300
             text-[var(--text-main)]
             group-hover:text-gruvbox-light1"
@@ -118,7 +118,7 @@ export default function ProjectCard({ project }: { project: Project }) {
               <Github size={20} />
             </a>
 
-            {/* BOTÓN VER MÁS (CORREGIDO: Usamos texto dinámico del contexto) */}
+            {/* BOTÓN VER MÁS */}
             <Link 
               href={`/projects/${project.id}`}
               className="flex items-center gap-2 text-sm font-bold transition-colors group/link

@@ -1,64 +1,38 @@
-// Datos estáticos (no cambian con el idioma)
-export const profile = {
-  name: "Mario Enrique Ramirez Gallardo",
-  role: "Software Engineer",
-  email: "ragm030119@gs.utm.mx",
-  phone: "(+52) 951 119 6182",
-  social: {
-    github: "https://github.com/p3p3p3k4z",
-    linkedin: "https://www.linkedin.com/in/mario-ramirez", 
-    website: "https://p3p3p3k4z.github.io/Portafolio/"
-  },
-  links: {
-    cv: "/Mario_Ramirez_CV.pdf", 
-    image: "/images/profile.jpg"
-  }
-};
+import { profile } from './profile';
 
-// Textos de Interfaz (Navbar, Hero, Títulos)
-export const uiData = {
+export const heroData = {
   es: {
-    navbar: {
-      projects: 'Proyectos',
-      skills: 'Habilidades',
-      about: 'Sobre mí',
-      contact: 'Contacto',
-    },
-    hero: {
-      greeting: '¡Hola, soy',
-      role: profile.role, 
-      description: 'Estudiante de Ingeniería en Computación con sólidas habilidades en Linux. Me especializo en desarrollo full-stack, DevOps y en crear soluciones eficientes y escalables.',
-      ctaPrimary: 'Descargar CV',
-      ctaSecondary: 'Ver Proyectos',
-    },
-    sectionTitles: {
-      projects: '01. Proyectos Destacados',
-      skills: '02. Habilidades Técnicas',
-    },
-    buttons: {
-      viewMore: 'Ver más',
-    }
+    greeting: '¡Hola, soy',
+    role: profile.role, // Rol principal estático
+    // ROLES DINÁMICOS PARA LA ANIMACIÓN
+    rolesTypewriter: [
+      'Ingeniero de Software',
+      'Entusiasta de Linux',
+      'Desarrollador Full Stack',
+      'DevOps Jr',
+      'Contribuidor Open Source'
+    ],
+    description: 'Estudiante de Ingeniería en Computación con sólidas habilidades en Linux. Me especializo en desarrollo full-stack, DevOps y en crear soluciones eficientes y escalables.',
+    ctaPrimary: 'Descargar CV',
+    ctaSecondary: 'Ver Proyectos',
+    // RUTA DEL CV EN ESPAÑOL
+    cvFile: '/newcv.pdf' 
   },
   en: {
-    navbar: {
-      projects: 'Projects',
-      skills: 'Skills',
-      about: 'About',
-      contact: 'Contact',
-    },
-    hero: {
-      greeting: "Hello, I'm",
-      role: profile.role,
-      description: 'Computer Engineering student with solid Linux skills. I specialize in full-stack development, DevOps, and building efficient, scalable solutions.',
-      ctaPrimary: 'Download CV',
-      ctaSecondary: 'View Projects',
-    },
-    sectionTitles: {
-      projects: '01. Featured Projects',
-      skills: '02. Technical Skills',
-    },
-    buttons: {
-      viewMore: 'View more',
-    }
+    greeting: "Hello, I'm",
+    role: profile.role,
+    // ROLES DINÁMICOS EN INGLÉS
+    rolesTypewriter: [
+      'Software Engineer',
+      'Linux Enthusiast',
+      'Full Stack Developer',
+      'DevOps Jr',
+      'Open Source Contributor'
+    ],
+    description: 'Computer Engineering student with solid Linux skills. I specialize in full-stack development, DevOps, and building efficient, scalable solutions.',
+    ctaPrimary: 'Download CV',
+    ctaSecondary: 'View Projects',
+    // RUTA DEL CV EN INGLÉS
+    cvFile: '/micv_ingles.pdf'
   }
 };

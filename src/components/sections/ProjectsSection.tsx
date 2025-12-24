@@ -5,20 +5,18 @@ import ProjectCard from '@/components/ui/ProjectCard';
 import Link from 'next/link';
 
 export default function ProjectsSection() {
-  // 1. Obtenemos todo el contenido ya traducido del contexto
+  // 1. Obtenemos el contenido del contexto
   const { content } = useLanguage();
   
-  // Destructuramos para facilitar el uso
-  const { projects, ui } = content;
+  // 2. Destructuramos: 'projects' (data) y 'sections' (textos de interfaz)
+  const { projects, sections } = content;
 
-  // 2. BLINDAJE Y FILTRADO
-  // 'projects' ya es el array correspondiente al idioma seleccionado.
+  // 3. BLINDAJE Y FILTRADO
   const safeData = projects || [];
   
-  // Filtramos los destacados (featured: true)
+  // Filtramos los destacados (featured: true) y tomamos los primeros 6
   const featuredProjects = safeData.filter(p => p.featured).slice(0, 6);
 
-  // Estado vacío por seguridad
   if (featuredProjects.length === 0) {
     return (
       <section id="projects" className="py-20 text-center text-gruvbox-gray">
@@ -37,8 +35,8 @@ export default function ProjectsSection() {
             text-gruvbox-orange dark:text-gruvbox-orange-bright">
             01.
           </span>
-          {/* Usamos el título desde uiData */}
-          {ui.sectionTitles.projects}
+          {/* CORRECCIÓN: Usamos sections.titles */}
+          {sections.titles.projects}
         </h2>
         <div className="h-[1px] bg-[var(--border-color)] w-full opacity-50" />
       </div>
@@ -51,7 +49,6 @@ export default function ProjectsSection() {
             className="animate-in fade-in zoom-in duration-500" 
             style={{ animationDelay: `${index * 100}ms` }}
           >
-            {/* ProjectCard recibe el objeto project que ya tiene textos en el idioma correcto */}
             <ProjectCard project={project} />
           </div>
         ))}
@@ -65,8 +62,8 @@ export default function ProjectsSection() {
             border-gruvbox-yellow text-gruvbox-yellow hover:bg-gruvbox-yellow hover:text-gruvbox-dark0
             dark:border-gruvbox-yellow-bright dark:text-gruvbox-yellow-bright dark:hover:bg-gruvbox-yellow-bright"
         >
-          {/* Usamos el texto del botón secundario del Hero ("Ver Proyectos") o View More */}
-          {ui.hero.ctaSecondary} 
+          {/* CORRECCIÓN: Usamos el botón específico 'explore' definido en sections.ts */}
+          {sections.buttons.explore} 
         </Link>
       </div>
     </section>
