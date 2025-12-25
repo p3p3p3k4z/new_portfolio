@@ -1,22 +1,23 @@
 'use client';
 import React, { createContext, useContext, useState, useEffect } from 'react';
 
-// 1. IMPORTAMOS LOS NUEVOS ARCHIVOS
 import { skillsData } from '@/data/skills';
 import { projectsData } from '@/data/projects';
 import { experienceData } from '@/data/experience';
-import { heroData } from '@/data/hero';       // Nuevo
+import { heroData } from '@/data/hero';      
 import { sectionsData } from '@/data/sections'; 
+import { educationData } from '@/data/education';
 
 type Language = 'es' | 'en';
 
-// 2. DEFINIMOS LA ESTRUCTURA DEL CONTENIDO
+// ESTRUCTURA DEL CONTENIDO
 interface ContentType {
   skills: typeof skillsData.es;
   projects: typeof projectsData.es;
   experience: typeof experienceData.es;
   hero: typeof heroData.es;         
   sections: typeof sectionsData.es;
+  education: typeof educationData.es;
 }
 
 interface LanguageContextType {
@@ -30,13 +31,14 @@ const LanguageContext = createContext<LanguageContextType | undefined>(undefined
 export const LanguageProvider = ({ children }: { children: React.ReactNode }) => {
   const [lang, setLangState] = useState<Language>('es');
 
-  // 3. CONSTRUIMOS EL OBJETO 'content'
+  //CONSTRUIMOS EL OBJETO 'content'
   const content: ContentType = {
     skills: skillsData[lang],
     projects: projectsData[lang],
     experience: experienceData[lang],
     hero: heroData[lang],
-    sections: sectionsData[lang], 
+    sections: sectionsData[lang],
+    education: educationData[lang],
   };
 
   useEffect(() => {
