@@ -12,7 +12,7 @@ export default function AllProjectsPage() {
   // Si content.projects no existe, usamos un array vacío []
   const projects = content?.projects || [];
 
-  // 2. DATA: Textos (AQUÍ ESTÁ LA SOLUCIÓN DEL ERROR)
+  // 2. DATA: Textos 
   // Usamos '?.' para preguntar suavemente si existe. 
   // Si 'projectsPage' es undefined, asignamos un objeto vacío {} para que no rompa abajo.
   const rawUi = content?.sections?.projectsPage || {};

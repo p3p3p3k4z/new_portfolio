@@ -2,7 +2,6 @@
 import { useLanguage } from '@/context/LanguageContext';
 import Typewriter from '@/components/ui/Typewriter';
 import { Github, Linkedin, Mail, FileText, Terminal } from 'lucide-react';
-// Importamos el profile correcto
 import { profile } from '@/data/profile';
 
 export default function Hero() {
@@ -32,7 +31,7 @@ export default function Hero() {
             <p className="font-mono text-gruvbox-green-bright text-lg flex items-center justify-center lg:justify-start gap-2">
               <Terminal size={18} />
               <span className="text-gruvbox-gray">echo</span> 
-              <span>&quot;{greeting} World!&quot;</span>
+              <span>&quot;{greeting}</span>
             </p>
             
             <h1 className="text-5xl md:text-7xl font-black text-[var(--text-heading)] tracking-tight leading-tight">
@@ -53,9 +52,9 @@ export default function Hero() {
             </div>
           </div>
 
-          <p className="text-lg text-[var(--text-main)] max-w-xl leading-relaxed mx-auto lg:mx-0">
+         {/* <p className="text-lg text-[var(--text-main)] max-w-xl leading-relaxed mx-auto lg:mx-0">
             {description}
-          </p>
+          </p>*/}
 
           <div className="flex flex-wrap gap-4 pt-4 justify-center lg:justify-start">
             
@@ -89,7 +88,6 @@ export default function Hero() {
         {/* === LADO DERECHO: GIF === */}
         <div className="order-1 lg:order-2 flex justify-center items-center animate-in fade-in zoom-in duration-1000 delay-200">
           <div className="relative w-72 h-72 md:w-96 md:h-96 group">
-            {/* CORRECCIÓN: Usamos el GIF desde profile.images.penguinGif */}
             <img 
               src={profile.images.penguinGif} 
               alt="Tux Linux"

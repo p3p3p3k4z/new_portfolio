@@ -33,7 +33,7 @@ export default function EducationPage() {
     alura: 'var(--color-gruvbox-blue)',
     datacamp: 'var(--color-gruvbox-green)',
     nasa: 'var(--color-gruvbox-purple)',
-    platzi: 'var(--color-gruvbox-yellow)', // Usamos Yellow para mantener paleta
+    platzi: 'var(--color-gruvbox-yellow)', 
     others: 'var(--color-gruvbox-orange)',
   };
 
