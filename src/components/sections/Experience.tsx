@@ -44,9 +44,6 @@ export default function Experience() {
         {/* TÍTULO */}
         <div className="flex items-center gap-4 mb-16 animate-in slide-in-from-left-5 duration-700">
           <h2 className="text-3xl font-bold whitespace-nowrap flex items-center text-[var(--text-heading)]">
-            <span className="font-mono text-2xl mr-3 text-gruvbox-orange dark:text-gruvbox-orange-bright">
-              03.
-            </span>
             {titles.experience}
           </h2>
           <div className="h-[1px] bg-[var(--border-color)] w-full opacity-50" />

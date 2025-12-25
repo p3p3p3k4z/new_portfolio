@@ -46,9 +46,14 @@ export default function ExperiencePage() {
             </Link>
         </div>
 
-        <h1 className="text-3xl md:text-4xl font-bold mb-12 text-[var(--text-heading)] pl-2">
-          {titles.experience}
-        </h1>
+        <header className="mb-16 animate-in fade-in slide-in-from-bottom-4 duration-700 delay-100">
+          <h1 className="text-4xl md:text-5xl font-bold mb-6 text-[var(--text-heading)]">
+            <span className="text-gruvbox-green dark:text-gruvbox-green-bright">~/</span> 
+            {titles.experience}
+          </h1>
+          {/* La barra amarilla decorativa */}
+          <div className="h-1 w-20 bg-gruvbox-green mt-8 rounded-full" />
+        </header>
 
         <div className="space-y-12 relative">
           
