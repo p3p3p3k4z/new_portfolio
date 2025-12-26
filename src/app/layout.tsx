@@ -4,7 +4,7 @@ import Navbar from '@/components/layout/Navbar';
 import "./globals.css";
 
 export const metadata = {
-  title: 'Mario Ramírez | Software Engineer',
+  title: 'Mario Ramírez | Computer Engineer & Developer',
   description: 'Portafolio profesional de Mario Ramírez',
 };
 

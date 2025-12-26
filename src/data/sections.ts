@@ -7,6 +7,7 @@ export const sectionsData = {
       about: 'Sobre mí',
       contact: 'Contacto',
       blog: 'Blog',
+      education: "Educación",
     },
     titles: {
       projects: 'Proyectos Destacados',
@@ -53,6 +54,7 @@ export const sectionsData = {
       about: 'About',
       contact: 'Contact',
       blog: 'Blog',
+      education: "Education",
     },
     titles: {
       projects: 'Featured Projects',

@@ -5,7 +5,8 @@ import { useTheme } from 'next-themes';
 import Link from 'next/link';
 import { 
   Menu, X, Terminal, Sun, Moon, Languages, 
-  Code2, Briefcase, User, BookOpen, Download 
+  Code2, Briefcase, User, BookOpen, Download,
+  GraduationCap, Mail 
 } from 'lucide-react';
 
 export default function Navbar() {
@@ -13,55 +14,68 @@ export default function Navbar() {
   const [mounted, setMounted] = useState(false);
   const { theme, setTheme } = useTheme();
   
-  // 1. OBTENEMOS 'content' y 'lang'
   const { content, lang, setLang } = useLanguage();
-  
-  // 2. EXTRAEMOS DATOS DE LA NUEVA ESTRUCTURA
-  // 'sections' tiene las traducciones del menú
-  // 'hero' tiene la ruta correcta del CV (cvFile)
   const { sections, hero } = content;
   const { navbar } = sections;
 
   useEffect(() => setMounted(true), []);
 
-  // 3. DEFINIMOS LOS LINKS DINÁMICOS
   const navLinks = [
     { 
       name: navbar.projects, 
       href: '#projects', 
       icon: Code2, 
-      color: 'hover:bg-gruvbox-green-bright border-gruvbox-green' 
+      desktopClass: 'hover:bg-gruvbox-green-bright border-gruvbox-green',
+      mobileClass: 'border-gruvbox-green text-gruvbox-green'
     },
     { 
       name: navbar.skills, 
       href: '#skills', 
       icon: Terminal, 
-      color: 'hover:bg-gruvbox-yellow-bright border-gruvbox-yellow' 
+      desktopClass: 'hover:bg-gruvbox-yellow-bright border-gruvbox-yellow',
+      mobileClass: 'border-gruvbox-yellow text-gruvbox-yellow'
     },
     { 
-      name: navbar.experience, // Ahora usa la traducción (Experiencia / Experience)
+      name: navbar.experience, 
       href: '#experience', 
       icon: Briefcase, 
-      color: 'hover:bg-gruvbox-blue-bright border-gruvbox-blue' 
+      desktopClass: 'hover:bg-gruvbox-blue-bright border-gruvbox-blue',
+      mobileClass: 'border-gruvbox-blue text-gruvbox-blue'
     },
     { 
-      name: navbar.blog, // Ahora usa la traducción
-      href: '/blog', 
-      icon: BookOpen, 
-      color: 'hover:bg-gruvbox-purple-bright border-gruvbox-purple' 
+      name: navbar.education || (lang === 'en' ? 'Education' : 'Educación'), 
+      href: '#education', 
+      icon: GraduationCap, 
+      desktopClass: 'hover:bg-gruvbox-orange-bright border-gruvbox-orange',
+      mobileClass: 'border-gruvbox-orange text-gruvbox-orange'
     },
     { 
       name: navbar.about, 
       href: '#about', 
       icon: User, 
-      color: 'hover:bg-gruvbox-aqua-bright border-gruvbox-aqua' 
+      desktopClass: 'hover:bg-gruvbox-aqua-bright border-gruvbox-aqua',
+      mobileClass: 'border-gruvbox-aqua text-gruvbox-aqua'
+    },
+    { 
+      name: navbar.contact || (lang === 'en' ? 'Contact' : 'Contacto'), 
+      href: '#contact', 
+      icon: Mail, 
+      desktopClass: 'hover:bg-gruvbox-gray-light border-gruvbox-gray',
+      mobileClass: 'border-gruvbox-gray text-gruvbox-gray'
+    },
+    { 
+      name: navbar.blog, 
+      href: '/blog', 
+      icon: BookOpen, 
+      desktopClass: 'hover:bg-gruvbox-purple-bright border-gruvbox-purple',
+      mobileClass: 'border-gruvbox-purple text-gruvbox-purple'
     },
     { 
       name: 'CV', 
-      // 4. CORRECCIÓN: Usamos hero.cvFile que ya trae el PDF correcto según idioma
       href: hero.cvFile, 
       icon: Download, 
-      color: 'hover:bg-gruvbox-red-bright border-gruvbox-red' 
+      desktopClass: 'hover:bg-gruvbox-red-bright border-gruvbox-red',
+      mobileClass: 'border-gruvbox-red text-gruvbox-red'
     },
   ];
 
@@ -88,17 +102,16 @@ export default function Navbar() {
             <span className="w-2 h-4 bg-gruvbox-gray opacity-50 animate-pulse ml-1"></span>
           </Link>
 
-          {/* Escritorio */}
+          {/* Escritorio (Hidden on Mobile) */}
           <div className="hidden xl:flex items-center gap-2">
             {navLinks.map((link) => (
               <Link 
                 key={link.name} 
                 href={link.href}
-                // Si es el link del CV (descarga), le agregamos target blank
                 target={link.name === 'CV' ? '_blank' : undefined}
                 className={`flex items-center gap-2 px-3 py-1.5 border-b-2 text-[11px] font-black uppercase tracking-tighter transition-all 
                 bg-[var(--bg-card)] text-[var(--text-main)] hover:text-gruvbox-dark0 
-                ${link.color}`}
+                ${link.desktopClass}`}
               >
                 <link.icon size={14} />
                 {link.name}
@@ -107,17 +120,15 @@ export default function Navbar() {
 
             <div className="h-6 w-[1px] bg-[var(--border-color)] mx-2" />
 
-            {/* Switch Idioma */}
+            {/* Controles Desktop */}
             <button 
               onClick={handleLanguageToggle}
-              className="flex items-center gap-2 px-3 py-1.5 border border-gruvbox-orange text-gruvbox-orange-bright text-[10px] font-bold rounded hover:bg-gruvbox-orange-bright hover:text-gruvbox-dark0 transition-all uppercase
-              bg-[var(--bg-card)]"
+              className="flex items-center gap-2 px-3 py-1.5 border border-gruvbox-orange text-gruvbox-orange-bright text-[10px] font-bold rounded hover:bg-gruvbox-orange-bright hover:text-gruvbox-dark0 transition-all uppercase bg-[var(--bg-card)]"
             >
               <Languages size={14} />
               {lang === 'en' ? 'EN' : 'ES'}
             </button>
 
-            {/* Switch Tema */}
             <button 
               onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
               className="p-2 text-gruvbox-yellow-bright hover:bg-[var(--bg-card)] rounded-md transition-colors"
@@ -127,7 +138,7 @@ export default function Navbar() {
             </button>
           </div>
 
-          {/* Móvil */}
+          {/* Botón Hamburguesa Móvil */}
           <div className="xl:hidden flex items-center gap-4">
             <button onClick={() => setIsOpen(!isOpen)} className="text-[var(--text-main)] p-2">
               {isOpen ? <X size={28} /> : <Menu size={28} />}
@@ -138,8 +149,8 @@ export default function Navbar() {
 
       {/* Menú Móvil Overlay */}
       {isOpen && (
-        <div className="xl:hidden border-b p-4 space-y-2
-          bg-[var(--bg-page)] border-[var(--border-color)]"
+        <div className="xl:hidden border-b p-4 space-y-3 shadow-2xl animate-in slide-in-from-top-5
+          bg-[var(--bg-page)] border-[var(--border-color)] h-[calc(100vh-64px)] overflow-y-auto"
         >
           {navLinks.map((link) => (
             <Link
@@ -147,19 +158,31 @@ export default function Navbar() {
               href={link.href}
               onClick={() => setIsOpen(false)}
               target={link.name === 'CV' ? '_blank' : undefined}
-              className={`flex items-center gap-4 px-4 py-3 border-l-4 font-bold text-[var(--text-main)] ${link.color.replace('hover:', 'bg-')}/10`}
+              className={`flex items-center gap-4 px-4 py-4 border-l-4 font-bold text-lg transition-all active:scale-95
+                bg-[var(--bg-card)] hover:brightness-110
+                ${link.mobileClass}`}
             >
-              <link.icon size={18} />
+              <link.icon size={20} />
               {link.name}
             </Link>
           ))}
-          <div className="pt-4 border-t border-[var(--border-color)]">
+          
+          {/* Footer del Menú Móvil */}
+          <div className="pt-6 mt-4 border-t border-[var(--border-color)] grid grid-cols-2 gap-4 pb-10">
             <button 
               onClick={handleLanguageToggle}
-              className="w-full flex justify-center items-center gap-2 py-3 border border-gruvbox-orange text-gruvbox-orange-bright rounded font-bold uppercase text-xs"
+              className="flex justify-center items-center gap-2 py-3 border border-gruvbox-orange text-gruvbox-orange-bright rounded-lg font-bold uppercase text-xs hover:bg-gruvbox-orange/10 transition-colors"
             >
               <Languages size={18} /> 
-              {lang === 'en' ? 'Switch to Spanish' : 'Cambiar a Inglés'}
+              {lang === 'en' ? 'Español' : 'English'}
+            </button>
+
+            <button 
+              onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+              className="flex justify-center items-center gap-2 py-3 border border-gruvbox-yellow text-gruvbox-yellow-bright rounded-lg font-bold uppercase text-xs hover:bg-gruvbox-yellow/10 transition-colors"
+            >
+              {mounted && (theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />)}
+              {theme === 'dark' ? 'Light' : 'Dark'}
             </button>
           </div>
         </div>

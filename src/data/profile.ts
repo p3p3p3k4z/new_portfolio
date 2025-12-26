@@ -5,7 +5,7 @@ export const profile = {
   phone: "(+52) 951 119 6182",
   social: {
     github: "https://github.com/p3p3p3k4z",
-    linkedin: "https://www.linkedin.com/in/mario-ramirez", 
+    linkedin: "https://www.linkedin.com/in/mario-ramirez-abab9a318/", 
     website: "https://p3p3p3k4z.github.io/Portafolio/"
   },
   images: {

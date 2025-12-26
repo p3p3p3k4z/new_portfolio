@@ -169,7 +169,7 @@ export const experienceData = {
         'Continuous skill development in Full Stack (Frontend & Backend), databases, and algorithms.',
         'Proficient in Linux environments, complemented by progressive learning in DevOps and containerization.'
       ],
-      technologies: ['Java', 'C', 'Linux', 'Linux', 'Web Development', 'Networks'],
+      technologies: ['Java', 'C', 'Linux', 'Web Development', 'Networks'],
       type: 'education'
     }
   ] as ExperienceItem[]
