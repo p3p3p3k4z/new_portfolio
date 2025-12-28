@@ -20,7 +20,11 @@ const nextConfig = {
       },
       {
         protocol: 'https',
-        hostname: 'f1oxyz.github.io', // Para tu imagen del proyecto Cozobi
+        hostname: 'i.redd.it', 
+      },
+      {
+        protocol: 'https',
+        hostname: 'p4.wallpaperbetter.com', 
       },
     ],
   },

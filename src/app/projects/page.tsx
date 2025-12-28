@@ -33,7 +33,7 @@ export default function AllProjectsPage() {
         {/* --- TU BOTÓN cd .. --- */}
         <div className="mb-12 animate-in fade-in slide-in-from-left-4 duration-500">
             <Link 
-                href="/" 
+                href="/#projects" 
                 className="group inline-flex items-center gap-4 font-mono font-bold transition-colors
                   text-4xl md:text-5xl 
                   text-gruvbox-gray hover:text-gruvbox-orange

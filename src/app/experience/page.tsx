@@ -36,7 +36,7 @@ export default function ExperiencePage() {
         
         <div className="mb-16">
             <Link 
-                href="/" 
+                href="/#experience" 
                 className="group inline-flex items-center gap-4 font-mono font-bold transition-colors
                   text-4xl md:text-5xl 
                   text-gruvbox-gray hover:text-gruvbox-green"

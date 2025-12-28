@@ -16,7 +16,6 @@ const images = {
     algo: 'https://github.com/p3p3p3k4z/Proyecto-Ordenamientos/raw/main/preview/ventana_grafica.png',
     procesador: 'https://github.com/p3p3p3k4z/Procesador/raw/instruccion_I_v2/captura_top.png',
     linux: 'https://github.com/p3p3p3k4z/script_Linux/raw/main/inicio.png',
-    cozobi: 'https://f1oxyz.github.io/cozobi.github.io/assets/img/portfolio/logo%20copy.png',
     pettiapp: 'https://github.com/p3p3p3k4z/PettiApp/raw/main/info_proyecto/capturas/inicio.png',
     tienda: 'https://github.com/p3p3p3k4z/tiendita/raw/main/web/public/preview.png'
 };
@@ -83,7 +82,6 @@ export const projectsData = {
       title: 'Cozobi',
       description: 'App web con datos geoespaciales para mejorar la planificación agrícola. Proyecto ganador del NASA Space Apps Challenge.',
       technologies: ['HTML', 'JS', 'Python', 'Geo APIs'],
-      imageUrl: images.cozobi,
       githubUrl: 'https://www.spaceappschallenge.org/nasa-space-apps-2024/find-a-team/nahual-code/?tab=project',
       featured: false
     },
@@ -168,7 +166,6 @@ export const projectsData = {
       title: 'Cozobi',
       description: 'Web app integrating geospatial data for agricultural planning. NASA Space Apps Challenge project.',
       technologies: ['HTML', 'JS', 'Python', 'Geo APIs'],
-      imageUrl: images.cozobi,
       githubUrl: 'https://www.spaceappschallenge.org/nasa-space-apps-2024/find-a-team/nahual-code/?tab=project',
       featured: false
     },

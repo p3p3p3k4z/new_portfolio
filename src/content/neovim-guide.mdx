@@ -1,0 +1,69 @@
+---
+title: "De VS Code a Neovim"
+date: "2025-12-29"
+description: "Una guía honesta para migrar tu entorno de desarrollo, configurar LazyVim y no morir en el intento."
+tags: ["Neovim", "Productivity", "Terminal", "Lua"]
+image: "https://images.unsplash.com/photo-1542831371-29b0f74f9713?q=80&w=1000&auto=format&fit=crop"
+---
+
+# ¿Por qué duele tanto cambiar?
+
+Todos hemos estado ahí. Abres **VS Code**, instalas 40 extensiones, y de repente tu laptop empieza a despegar como un avión ✈️. Neovim promete velocidad, pero la curva de aprendizaje parece una pared vertical.
+
+<Callout type="warning" title="ADVERTENCIA">
+Una vez que aprendes los movimientos de Vim (`hjkl`), no podrás escribir texto normal sin intentar salir con <kbd>:</kbd><kbd>w</kbd><kbd>q</kbd>.
+</Callout>
+
+## La Salvación: LazyVim
+
+Configurar Neovim desde cero con Lua es educativo, pero si quieres trabajar **YA**, te recomiendo **LazyVim**. Es una distribución pre-configurada que convierte a Neovim en un IDE completo en segundos.
+
+### Instalación
+
+Primero, asegúrate de tener los requisitos. Copia y pega esto en tu terminal:
+
+```bash
+# Hacemos backup de tu configuración anterior (por si acaso)
+mv ~/.config/nvim{,.bak}
+mv ~/.local/share/nvim{,.bak}
+mv ~/.local/state/nvim{,.bak}
+mv ~/.cache/nvim{,.bak}
+
+# Clonamos el starter template de LazyVim
+git clone [https://github.com/LazyVim/starter](https://github.com/LazyVim/starter) ~/.config/nvim
+
+# Eliminamos la carpeta .git para hacerlo nuestro
+rm -rf ~/.config/nvim/.git
+
+# Iniciamos Neovim
+nvim
+
+Al abrirlo, verás como Lazy.nvim empieza a descargar plugins automáticamente. Árbol de archivos, autocompletado, linter... todo está ahí.
+Atajos Esenciales
+
+Olvídate del ratón. Aquí te mueves con el teclado:
+Acción	Atajo VS Code	Atajo Neovim (LazyVim)
+Abrir Archivo	Ctrl + P	<kbd>Space</kbd> <kbd>Space</kbd>
+Buscar Texto	Ctrl + Shift + F	<kbd>Space</kbd> <kbd>s</kbd> <kbd>g</kbd>
+Explorador Archivos	Ctrl + B	<kbd>Space</kbd> <kbd>e</kbd>
+Terminal Flotante	Ctrl + ` 	<kbd>Space</kbd> <kbd>f</kbd> <kbd>t</kbd>
+Configuración Personalizada
+
+Para agregar plugins extra, edita el archivo lua/plugins/example.lua. Aquí tienes un ejemplo para agregar el tema Gruvbox (porque amamos Gruvbox):
+Lua
+
+-- ~/.config/nvim/lua/plugins/theme.lua
+return {
+  { "ellisonleao/gruvbox.nvim" },
+  {
+    "LazyVim/LazyVim",
+    opts = {
+      colorscheme = "gruvbox",
+    },
+  },
+}
+
+<Callout type="success" title="TIP PRO"> Usa <kbd>Space</kbd> <kbd>u</kbd> <kbd>C</kbd> para cambiar colores dinámicamente y probar cuál te gusta más sin reiniciar. </Callout>
+Conclusión
+
+El camino es duro al principio, pero la memoria muscular que desarrollas te hará un desarrollador mucho más veloz. Neovim no es solo un editor, es una extensión de tus dedos.

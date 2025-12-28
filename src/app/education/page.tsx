@@ -27,7 +27,6 @@ export default function EducationPage() {
   const activeData = education[activeTab] || [];
 
   // --- MAPEO A TUS VARIABLES CSS EXACTAS ---
-  // Esto garantiza que use tu paleta global sin errores de Tailwind
   const TAB_COLORS: Record<TabKey, string> = {
     utm: 'var(--color-gruvbox-aqua)',
     alura: 'var(--color-gruvbox-blue)',
@@ -47,7 +46,7 @@ export default function EducationPage() {
         {/* --- 1. BOTÓN cd .. --- */}
         <div className="mb-12 animate-in fade-in slide-in-from-left-4 duration-500">
             <Link 
-                href="/" 
+                href="/#education" 
                 className="group inline-flex items-center gap-4 font-mono font-bold transition-colors
                   text-4xl md:text-5xl 
                   text-gruvbox-gray hover:text-gruvbox-blue"
