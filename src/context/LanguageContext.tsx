@@ -9,6 +9,7 @@ import { sectionsData } from '@/data/sections';
 import { educationData } from '@/data/education';
 import { aboutData } from '@/data/about';
 import { contactData } from '@/data/contact';
+import { cvData } from '@/data/cv';
 
 type Language = 'es' | 'en';
 
@@ -22,6 +23,7 @@ interface ContentType {
   education: typeof educationData.es;
   about: typeof aboutData.es;
   contact: typeof contactData.es;
+  cv: typeof cvData.es;
 }
 
 interface LanguageContextType {
@@ -45,6 +47,7 @@ export const LanguageProvider = ({ children }: { children: React.ReactNode }) =>
     education: educationData[lang],
     about: aboutData[lang],
     contact: contactData[lang],
+    cv: cvData[lang],
   };
 
   useEffect(() => {

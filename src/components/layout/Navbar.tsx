@@ -72,7 +72,7 @@ export default function Navbar() {
     },
     { 
       name: 'CV', 
-      href: hero.cvFile, 
+      href: '/cv', 
       icon: Download, 
       desktopClass: 'hover:bg-gruvbox-red-bright border-gruvbox-red',
       mobileClass: 'border-gruvbox-red text-gruvbox-red'
@@ -108,7 +108,7 @@ export default function Navbar() {
               <Link 
                 key={link.name} 
                 href={link.href}
-                target={link.name === 'CV' ? '_blank' : undefined}
+                //target={link.name === 'CV' ? '_blank' : undefined}
                 className={`flex items-center gap-2 px-3 py-1.5 border-b-2 text-[11px] font-black uppercase tracking-tighter transition-all 
                 bg-[var(--bg-card)] text-[var(--text-main)] hover:text-gruvbox-dark0 
                 ${link.desktopClass}`}
@@ -157,7 +157,7 @@ export default function Navbar() {
               key={link.name}
               href={link.href}
               onClick={() => setIsOpen(false)}
-              target={link.name === 'CV' ? '_blank' : undefined}
+              //target={link.name === 'CV' ? '_blank' : undefined}
               className={`flex items-center gap-4 px-4 py-4 border-l-4 font-bold text-lg transition-all active:scale-95
                 bg-[var(--bg-card)] hover:brightness-110
                 ${link.mobileClass}`}

@@ -11,8 +11,7 @@ export default function Hero() {
   const { 
     greeting, 
     description, 
-    rolesTypewriter, 
-    cvFile, 
+    rolesTypewriter,  
     ctaPrimary 
   } = content.hero;
 
@@ -77,7 +76,7 @@ export default function Hero() {
             </a>
 
             {/* CV Dinámico */}
-            <a href={cvFile} target="_blank" className={`${buttonBaseClass} hover:border-gruvbox-green hover:text-gruvbox-green hover:bg-gruvbox-green/10`}>
+            <a href={'/cv'} className={`${buttonBaseClass} hover:border-gruvbox-green hover:text-gruvbox-green hover:bg-gruvbox-green/10`}>
               <FileText className="group-hover:scale-110 transition-transform" size={20} />
               <span className="font-bold">{ctaPrimary}</span>
             </a>
