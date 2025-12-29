@@ -138,18 +138,40 @@ export default function Navbar() {
             </button>
           </div>
 
-          {/* Botón Hamburguesa Móvil */}
-          <div className="xl:hidden flex items-center gap-4">
-            <button onClick={() => setIsOpen(!isOpen)} className="text-[var(--text-main)] p-2">
-              {isOpen ? <X size={28} /> : <Menu size={28} />}
+          {/* === MOBILE CONTROLS (Visible en móvil, fuera del menú) === */}
+          <div className="xl:hidden flex items-center gap-3">
+            
+            {/* 1. Botón Idioma Móvil */}
+            <button 
+              onClick={handleLanguageToggle}
+              className="flex items-center gap-1 px-2 py-1.5 rounded border border-gruvbox-orange/50 text-gruvbox-orange text-xs font-bold active:scale-95 bg-[var(--bg-card)]"
+            >
+               <span className="uppercase">{lang}</span>
+            </button>
+
+            {/* 2. Botón Tema Móvil */}
+            <button 
+              onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+              className="p-1.5 rounded border border-gruvbox-yellow/50 text-gruvbox-yellow bg-[var(--bg-card)] active:scale-95"
+            >
+              {mounted && (theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />)}
+            </button>
+
+            {/* 3. Botón Hamburguesa (Ahora más grande y claro) */}
+            <button 
+              onClick={() => setIsOpen(!isOpen)} 
+              className="text-[var(--text-main)] p-2 hover:bg-[var(--bg-card)] rounded transition-colors active:scale-90"
+              aria-label="Menu"
+            >
+              {isOpen ? <X size={28} className="text-gruvbox-red" /> : <Menu size={28} />}
             </button>
           </div>
         </div>
       </div>
 
-      {/* Menú Móvil Overlay */}
+      {/* === MENÚ DESPLEGABLE MÓVIL (Solo Navegación) === */}
       {isOpen && (
-        <div className="xl:hidden border-b p-4 space-y-3 shadow-2xl animate-in slide-in-from-top-5
+        <div className="xl:hidden border-b p-4 space-y-2 shadow-2xl animate-in slide-in-from-top-5
           bg-[var(--bg-page)] border-[var(--border-color)] h-[calc(100vh-64px)] overflow-y-auto"
         >
           {navLinks.map((link) => (
@@ -157,9 +179,8 @@ export default function Navbar() {
               key={link.name}
               href={link.href}
               onClick={() => setIsOpen(false)}
-              //target={link.name === 'CV' ? '_blank' : undefined}
-              className={`flex items-center gap-4 px-4 py-4 border-l-4 font-bold text-lg transition-all active:scale-95
-                bg-[var(--bg-card)] hover:brightness-110
+              className={`flex items-center gap-4 px-4 py-4 border-l-4 font-bold text-lg transition-all active:scale-95 active:bg-[var(--bg-card)]
+                hover:brightness-110 rounded-r-lg
                 ${link.mobileClass}`}
             >
               <link.icon size={20} />
@@ -167,26 +188,12 @@ export default function Navbar() {
             </Link>
           ))}
           
-          {/* Footer del Menú Móvil */}
-          <div className="pt-6 mt-4 border-t border-[var(--border-color)] grid grid-cols-2 gap-4 pb-10">
-            <button 
-              onClick={handleLanguageToggle}
-              className="flex justify-center items-center gap-2 py-3 border border-gruvbox-orange text-gruvbox-orange-bright rounded-lg font-bold uppercase text-xs hover:bg-gruvbox-orange/10 transition-colors"
-            >
-              <Languages size={18} /> 
-              {lang === 'en' ? 'Español' : 'English'}
-            </button>
-
-            <button 
-              onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-              className="flex justify-center items-center gap-2 py-3 border border-gruvbox-yellow text-gruvbox-yellow-bright rounded-lg font-bold uppercase text-xs hover:bg-gruvbox-yellow/10 transition-colors"
-            >
-              {mounted && (theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />)}
-              {theme === 'dark' ? 'Light' : 'Dark'}
-            </button>
+          {/* Footer decorativo (Opcional, ya que los controles están arriba) */}
+          <div className="pt-8 pb-20 text-center opacity-30 text-xs font-mono">
+            -- END OF BUFFER --
           </div>
         </div>
       )}
-    </nav>
+  </nav>
   );
 }
