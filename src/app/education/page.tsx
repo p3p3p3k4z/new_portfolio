@@ -124,9 +124,9 @@ export default function EducationPage() {
               />
 
               {/* Imagen */}
-              <div className="relative h-48 w-full bg-gruvbox-bg overflow-hidden border-b border-[var(--border-color)]">
+              <div className="relative h-65 w-full bg-gruvbox-bg overflow-hidden border-b border-[var(--border-color)]">
                 <div className="absolute inset-0 flex items-center justify-center text-gruvbox-gray opacity-20">
-                    <Award size={48} />
+                    <Award size={65} />
                 </div>
                 {cert.image && (
                    <Image
