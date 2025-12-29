@@ -27,8 +27,8 @@ export const experienceData = {
     },
     {
       id: 'bolt-minimax',
-      role: 'Desarrollador Full Stack (Individual)',
-      company: 'Bolt x MiniMax VIBE HACKERS',
+      role: 'Desarrollador Full Stack ',
+      company: 'Bolt x MiniMax VIBE HACKERS (Top 5)',
       date: '2025',
       description: [
         'Desarrollo en solitario de "Polli Vision", una plataforma para diagnóstico e identificación de polinizadores en México.',
@@ -109,8 +109,8 @@ export const experienceData = {
     },
     {
       id: 'bolt-minimax',
-      role: 'Full Stack Developer (Solo)',
-      company: 'Bolt x MiniMax VIBE HACKERS',
+      role: 'Full Stack Developer',
+      company: 'Bolt x MiniMax VIBE HACKERS (Top 5)',
       date: '2025',
       description: [
         'Solo development of "Polli Vision", a platform for diagnosing and identifying pollinators in Mexico.',

@@ -96,13 +96,13 @@ export default function ProjectCard({ project }: { project: any }) {
                 group-hover:text-gruvbox-light1 group-hover:hover:text-white">
               <Github size={20} />
             </a>
-
+            {/*
             <Link href={`/projects/${project.id}`}
               className="flex items-center gap-2 text-sm font-bold transition-colors group/link
                 text-gruvbox-red dark:text-gruvbox-red-bright group-hover:text-gruvbox-orange-bright">
               {buttonText} 
               <ArrowRight size={16} className="transform group-hover/link:translate-x-1 transition-transform" />
-            </Link>
+            </Link>   */}
           </div>
         </div>
       </div>
