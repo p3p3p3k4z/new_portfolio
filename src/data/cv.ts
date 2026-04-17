@@ -4,12 +4,12 @@ export const cvData = {
     subtitle: "Visualización y Descarga",
     description: "Aquí puedes visualizar mi CV actualizado. Diseñado para impresión y lectura digital.",
     // carpeta public/
-    file: "/Mario_Ramirez_CV_ES.pdf", 
+    file: "/cv_rgme.pdf", 
     fileName: "Mario_Ramirez_CV_ES.pdf",
     downloadBtn: "Descargar PDF",
     openBtn: "Abrir en Pestaña Nueva",
     info: {
-      updated: "Última act: Diciembre 2025",
+      updated: "Última act: Abril 2026",
       version: "v2.4.0",
       size: "1.2 MB"
     }
@@ -18,12 +18,12 @@ export const cvData = {
     title: "Curriculum Vitae",
     subtitle: "Preview & Download",
     description: "Here you can preview my updated CV. Designed for print and digital reading.",
-    file: "/Mario_Ramirez_CV_EN.pdf",
+    file: "/cv_es_rgme.pdf",
     fileName: "Mario_Ramirez_CV_EN.pdf",
     downloadBtn: "Download PDF",
     openBtn: "Open New Tab",
     info: {
-      updated: "Last upd: December 2025",
+      updated: "Last upd: April 2026",
       version: "v2.4.0",
       size: "1.2 MB"
     }
