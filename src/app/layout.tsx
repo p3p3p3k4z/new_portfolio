@@ -1,7 +1,20 @@
 import { LanguageProvider } from '@/context/LanguageContext';
 import { ThemeProvider } from 'next-themes';
 import Navbar from '@/components/layout/Navbar';
+import { Inter, Fira_Code } from 'next/font/google';
 import "./globals.css";
+
+const inter = Inter({
+  subsets: ['latin'],
+  variable: '--font-inter',
+  display: 'swap',
+});
+
+const firaCode = Fira_Code({
+  subsets: ['latin'],
+  variable: '--font-fira-code',
+  display: 'swap',
+});
 
 export const metadata = {
   title: 'Mario Ramírez | Computer Engineer & Developer',
@@ -14,7 +27,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning className={`${inter.variable} ${firaCode.variable}`}>
       {/* CORRECCIÓN IMPORTANTE:
          Eliminamos 'bg-gruvbox-dark0' y 'text-gruvbox-light1'.
          Ahora el color lo controlan las variables CSS (--bg-page) de globals.css

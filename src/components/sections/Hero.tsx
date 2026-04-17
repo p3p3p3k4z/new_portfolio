@@ -3,6 +3,7 @@ import { useLanguage } from '@/context/LanguageContext';
 import Typewriter from '@/components/ui/Typewriter';
 import { Github, Linkedin, Mail, FileText, Terminal } from 'lucide-react';
 import { profile } from '@/data/profile';
+import Image from 'next/image';
 
 export default function Hero() {
   const { content } = useLanguage();
@@ -87,10 +88,12 @@ export default function Hero() {
         {/* === LADO DERECHO: GIF === */}
         <div className="order-1 lg:order-2 flex justify-center items-center animate-in fade-in zoom-in duration-1000 delay-200">
           <div className="relative w-72 h-72 md:w-96 md:h-96 group">
-            <img 
+            <Image 
               src={profile.images.penguinGif} 
               alt="Tux Linux"
-              className="w-full h-full object-contain transition-all duration-500 hover:scale-105"
+              fill
+              priority
+              className="object-contain transition-all duration-500 hover:scale-105"
             />
           </div>
         </div>
