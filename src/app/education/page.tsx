@@ -7,7 +7,7 @@ import { ExternalLink, Award } from 'lucide-react';
 import BackButton from '@/components/ui/BackButton';
 
 // Tipos para las categorías
-type TabKey = 'all' | 'utm' | 'alura' | 'datacamp' | 'nasa' | 'platzi' | 'hackods' | 'codigo_facilito' | 'waylearn' | 'others';
+type TabKey = 'all' | 'utm' | 'alura' | 'datacamp' | 'nasa' | 'platzi' | 'unam' | 'codigo_facilito' | 'waylearn' | 'others';
 
 export default function EducationPage() {
   const { content } = useLanguage();

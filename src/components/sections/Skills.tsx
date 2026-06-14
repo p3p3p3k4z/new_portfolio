@@ -25,7 +25,7 @@ export default function Skills() {
                 {category.title}
               </h3>
               
-              <div className="flex flex-wrap gap-3">
+              <div className="flex flex-wrap justify-center sm:justify-start gap-3">
                 {category.skills.map((skill) => (
                   <div 
                     key={skill.name} 

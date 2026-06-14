@@ -21,8 +21,7 @@ export default function Hero() {
 
   return (
     <section className="min-h-[85vh] flex items-center justify-center py-20 relative overflow-hidden bg-transparent">
-      
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center w-full max-w-7xl mx-auto">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* === LADO IZQUIERDO: TEXTO === */}
         <div className="space-y-8 animate-in fade-in slide-in-from-left-5 duration-1000 order-2 lg:order-1 text-center lg:text-left">
