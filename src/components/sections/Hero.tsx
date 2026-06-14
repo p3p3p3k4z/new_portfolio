@@ -16,8 +16,8 @@ export default function Hero() {
     ctaPrimary 
   } = content.hero;
 
-  const buttonBaseClass = "flex items-center gap-2 px-6 py-3 rounded transition-all group text-[var(--text-main)] border shadow-sm hover:-translate-y-0.5 " +
-    "bg-[var(--bg-card)] border-[var(--border-color)]";
+  const buttonBaseClass = "flex items-center gap-2 px-6 py-3 rounded-none transition-all duration-200 group text-[var(--text-main)] border-2 " +
+    "bg-[var(--bg-card)] border-[var(--border-color)] hover:-translate-y-1 hover:-translate-x-1";
 
   return (
     <section className="min-h-[85vh] flex items-center justify-center py-20 relative overflow-hidden bg-transparent">
@@ -59,25 +59,25 @@ export default function Hero() {
           <div className="flex flex-wrap gap-4 pt-4 justify-center lg:justify-start">
             
             {/* GitHub */}
-            <a href={profile.social.github} target="_blank" rel="noopener noreferrer" className={`${buttonBaseClass} hover:border-gruvbox-dark0 dark:hover:border-gruvbox-light1 hover:bg-gruvbox-light1/50 dark:hover:bg-gruvbox-dark2`}>
+            <a href={profile.social.github} target="_blank" rel="noopener noreferrer" className={`${buttonBaseClass} hover:bg-[var(--text-heading)] hover:text-[var(--bg-page)] hover:border-[var(--text-heading)] hover:shadow-[6px_6px_0_0_var(--text-main)]`}>
               <Github className="group-hover:scale-110 transition-transform" size={20} />
               <span className="font-bold">GitHub</span>
             </a>
 
             {/* LinkedIn */}
-            <a href={profile.social.linkedin} target="_blank" rel="noopener noreferrer" className={`${buttonBaseClass} hover:border-gruvbox-blue hover:text-gruvbox-blue hover:bg-gruvbox-blue/10`}>
+            <a href={profile.social.linkedin} target="_blank" rel="noopener noreferrer" className={`${buttonBaseClass} hover:bg-gruvbox-blue hover:text-gruvbox-light0 hover:border-gruvbox-blue hover:shadow-[6px_6px_0_0_var(--border-color)]`}>
               <Linkedin className="group-hover:scale-110 transition-transform" size={20} />
               <span className="font-bold">LinkedIn</span>
             </a>
 
             {/* Email */}
-            <a href={`mailto:${profile.email}`} className={`${buttonBaseClass} hover:border-gruvbox-red hover:text-gruvbox-red hover:bg-gruvbox-red/10`}>
+            <a href={`mailto:${profile.email}`} className={`${buttonBaseClass} hover:bg-gruvbox-red hover:text-gruvbox-light0 hover:border-gruvbox-red hover:shadow-[6px_6px_0_0_var(--border-color)]`}>
               <Mail className="group-hover:scale-110 transition-transform" size={20} />
               <span className="font-bold">Email</span>
             </a>
 
             {/* CV Dinámico */}
-            <a href={'/cv'} className={`${buttonBaseClass} hover:border-gruvbox-green hover:text-gruvbox-green hover:bg-gruvbox-green/10`}>
+            <a href={'/cv'} className={`${buttonBaseClass} hover:bg-gruvbox-green hover:text-gruvbox-dark0 hover:border-gruvbox-green hover:shadow-[6px_6px_0_0_var(--border-color)]`}>
               <FileText className="group-hover:scale-110 transition-transform" size={20} />
               <span className="font-bold">{ctaPrimary}</span>
             </a>

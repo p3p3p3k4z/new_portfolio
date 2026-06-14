@@ -2,7 +2,8 @@
 
 import Link from 'next/link';
 import { useLanguage } from '@/context/LanguageContext';
-import { Download, ExternalLink, FileText, Calendar, HardDrive, ArrowLeft, Maximize2 } from 'lucide-react';
+import { Download, ExternalLink, FileText, Calendar, HardDrive, Maximize2 } from 'lucide-react';
+import BackButton from '@/components/ui/BackButton';
 
 export default function CVPage() {
   const { content } = useLanguage();
@@ -12,32 +13,22 @@ export default function CVPage() {
     <main className="min-h-screen bg-[var(--bg-page)] pt-24 pb-12 px-4 sm:px-6 lg:px-8 transition-colors duration-300">
       <div className="max-w-7xl mx-auto">
         
-        <div className="mb-8 animate-in fade-in slide-in-from-left-4 duration-500">
-            <Link 
-                href="/" 
-                className="group inline-flex items-center gap-4 font-mono font-bold transition-colors
-                  text-xl md:text-2xl 
-                  text-gruvbox-gray hover:text-gruvbox-green
-                  dark:hover:text-gruvbox-green-bright"
-            >
-                <ArrowLeft className="w-8 h-8 md:w-8 md:h-8 transition-transform group-hover:-translate-x-3" /> 
-                <span>cd ..</span>
-            </Link>
-        </div>
-
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
           
           {/* --- COLUMNA IZQUIERDA: INFO Y ACCIONES --- */}
           <div className="lg:col-span-4 space-y-8 animate-in slide-in-from-left-4 duration-700">
             
             {/* Encabezado */}
-            <div>
-              <h1 className="text-4xl font-bold text-[var(--text-heading)] mb-2">
-                {cv.title}
-              </h1>
-              <p className="text-lg text-[var(--text-main)] opacity-70">
-                {cv.subtitle}
-              </p>
+            <div className="flex flex-col items-start gap-6">
+              <BackButton href="/" label="cd .." />
+              <div>
+                <h1 className="text-4xl font-bold text-[var(--text-heading)] mb-2">
+                  {cv.title}
+                </h1>
+                <p className="text-lg text-[var(--text-main)] opacity-70">
+                  {cv.subtitle}
+                </p>
+              </div>
             </div>
 
             {/* Caja de Metadata (Estilo Archivo de Sistema) */}

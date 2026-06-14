@@ -1,8 +1,8 @@
 'use client';
 
 import { useLanguage } from '@/context/LanguageContext';
-import { Briefcase, Award, GraduationCap, Calendar, ArrowLeft } from 'lucide-react';
-import Link from 'next/link';
+import { Briefcase, Award, GraduationCap, Calendar } from 'lucide-react';
+import BackButton from '@/components/ui/BackButton';
 import Navbar from '@/components/layout/Navbar';
 
 export default function ExperiencePage() {
@@ -34,25 +34,18 @@ export default function ExperiencePage() {
       
       <div className="pt-32 pb-20 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        <div className="mb-16">
-            <Link 
-                href="/#experience" 
-                className="group inline-flex items-center gap-4 font-mono font-bold transition-colors
-                  text-4xl md:text-5xl 
-                  text-gruvbox-gray hover:text-gruvbox-green"
-            >
-                <ArrowLeft className="w-10 h-10 md:w-14 md:h-14 transition-transform group-hover:-translate-x-3" /> 
-                <span>cd ..</span>
-            </Link>
-        </div>
-
-        <header className="mb-16 animate-in fade-in slide-in-from-bottom-4 duration-700 delay-100">
-          <h1 className="text-4xl md:text-5xl font-bold mb-6 text-[var(--text-heading)]">
-            <span className="text-gruvbox-green dark:text-gruvbox-green-bright">~/</span> 
-            {titles.experience}
-          </h1>
-          {/* La barra amarilla decorativa */}
-          <div className="h-1 w-20 bg-gruvbox-green mt-8 rounded-full" />
+        <header className="mb-16 flex flex-col md:flex-row md:items-start gap-6 lg:gap-8 animate-in fade-in slide-in-from-bottom-4 duration-700 delay-100">
+          <div className="pt-2">
+            <BackButton href="/#experience" label="cd .." />
+          </div>
+          <div>
+            <h1 className="text-4xl md:text-5xl font-bold mb-4 text-[var(--text-heading)]">
+              <span className="text-gruvbox-green dark:text-gruvbox-green-bright">~/</span> 
+              {titles.experience}
+            </h1>
+            {/* La barra amarilla decorativa */}
+            <div className="h-1 w-20 bg-gruvbox-green mt-6 rounded-full" />
+          </div>
         </header>
 
         <div className="space-y-12 relative">

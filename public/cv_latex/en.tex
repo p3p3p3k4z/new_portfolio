@@ -1,0 +1,126 @@
+\documentclass[a4paper,11pt]{article}
+
+% --- PACKAGES ---
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[default]{lato}
+\usepackage[top=1cm, bottom=1cm, left=1.2cm, right=1.2cm]{geometry}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{fontawesome5}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{parskip}
+
+% --- COLORS ---
+\definecolor{darkgrey}{RGB}{40,40,40}
+\definecolor{accent}{RGB}{204, 36, 29} % Gruvbox Red
+
+% --- CONFIGURATION ---
+\hypersetup{colorlinks=true, linkcolor=accent, urlcolor=accent}
+\setlength{\parindent}{0pt}
+
+\titlespacing*{\section}{0pt}{8pt}{4pt}
+\titleformat{\section}{\large\bfseries\color{darkgrey}\uppercase}{}{0em}{}[\titlerule]
+
+% --- CUSTOM COMMANDS ---
+\newcommand{\entry}[4]{
+  \vspace{2pt}
+  {\bfseries #1} \textbullet\ \textit{#2} \hfill \textbf{\footnotesize #3} \\
+  {\small #4} \par 
+  \vspace{4pt}
+}
+
+\newcommand{\project}[3]{
+  \vspace{2pt}
+  {\bfseries #1} \hfill \textit{\footnotesize #2} \\
+  {\small #3} \par
+  \vspace{3pt}
+}
+
+\newcommand{\award}[3]{
+  \vspace{2pt}
+  {\bfseries #1} \hfill \textbf{\footnotesize #2} \\
+  {\small #3} \par
+  \vspace{2pt}
+}
+
+% --- DOCUMENT ---
+\begin{document}
+\pagestyle{empty}
+
+% --- HEADER ---
+\begin{center}
+    {\LARGE \textbf{Mario Enrique Ramírez Gallardo}} \\ \vspace{2pt}
+    {\large Software Engineer | Product Builder} \\ \vspace{4pt} \\ \vspace{4pt}
+    
+    \small
+    \faEnvelope\ \href{mailto:ragm030119@gs.utm.mx}{ragm030119@gs.utm.mx} \quad \textbullet \quad
+    \faPhone\ (+52) 951 119 6182 \quad \textbullet \quad
+    \faGithub\ \href{https://github.com/p3p3p3k4z}{p3p3p3k4z} \quad \textbullet \quad
+    \faLinkedin\ \href{https://www.linkedin.com/in/mario-ramirez-abab9a318/}{/in/mario-ramirez} \\
+    \faGlobe\ \href{https://marioramirez-dev.vercel.app/}{marioramirez-dev.vercel.app}
+\end{center}
+
+\vspace{-6pt}
+
+% --- ABOUT ME ---
+\section*{About Me}
+\small Software Engineer with a solid background in Computer Engineering and proficiency in Linux environments. Specializing in the architecture and development of scalable Web and Mobile applications. I have hands-on experience in systems development and the creation of modular components. I excel in my analytical ability to solve complex problems under pressure, focusing on delivering scalable, maintainable code and results-oriented solutions.
+
+% --- EXPERIENCE ---
+\section*{Professional Experience}
+
+\entry{Teteocan Technologies}{Software Developer Intern}{Apr 2025 -- Sept 2025}
+{Architected cross-platform mobile solutions using \textbf{Flutter} and \textbf{Dart}, building modular components that accelerated the development cycle. Designed the \textbf{Firebase} infrastructure with real-time synchronization, structuring security rules and optimizing the database schema to significantly reduce latency in critical queries, ensuring app scalability.}
+
+% --- PROJECTS ---
+\section*{Featured Projects}
+
+\project{\href{https://github.com/p3p3p3k4z/aniita-web}{Añi Ita (Soul of the Flower) \faGithub}}{Python, Web, NASA Data}{
+Environmental restoration engine using \textbf{Landsat/MODIS} satellite data to automate the design of "Pollinator Islands". Features predictive flora models and an immersive 3D "Bee Mode" for visual validation.}
+
+\project{\href{https://github.com/p3p3p3k4z/huellazo-solana}{Huellazo (Solana LATAM Hackathon) \faGithub}}{React, Solana, Rust, NFTs}{
+Sustainable tourism platform gamifying ecological impact via blockchain. Developed integration using custom RPCs, earning a **direct pass to the incubation phase**.}
+
+\project{\href{https://github.com/p3p3p3k4z/Haskell-ML-Cat}{Haskell ML Cat \faGithub}}{Haskell, Python, Hasktorch, IPC}{
+High-performance benchmarking system. Hybrid architecture connecting a functional Haskell backend with a Python interface via \textbf{IPC}, comparing KNN models against Deep Learning.}
+
+% --- ACHIEVEMENTS ---
+\section*{Achievements and Awards}
+
+\award{3rd Place -- CLIHC (Latin American Conf. on Human-Computer Interaction)}{2026}{
+International recognition for innovation in user-centered interface design and development with social impact.}
+
+\award{Top 20 Finalist -- HackODS UNAM}{2026}{
+Development of technological solutions and data visualization using open data portals (INEGI, UNAM) for the SDGs.}
+
+\award{Global Top 5 -- Bolt x MiniMax VIBE HACKERS}{2025}{
+Solo development of "Polli Vision", an AI vision tool for real-time species identification in under 48h.}
+
+\award{Local Winner (4th Place) -- NASA Space Apps Challenge}{2024}{
+Development of "Cozobi", an agricultural optimization solution based on geospatial telemetry.}
+
+% --- SKILLS ---
+\section*{Skills}
+\small
+\textbf{Languages:} Python, JavaScript/TypeScript, Dart, SQL, C, Bash. \\
+\textbf{Infrastructure \& Systems:} Linux, Docker, Git, CI/CD. \\
+\textbf{Web \& Mobile:} React, Next.js, Vite, Tailwind CSS, Flutter. \\
+\textbf{Interests:} DevOps, Machine Learning, Web3, Systems Development.
+
+% --- EDUCATION AND CERTIFICATIONS ---
+\section*{Education and Certifications}
+
+\textbf{B.S. in Computer Engineering (Expected 2026)} \hfill \textit{Universidad Tecnológica de la Mixteca} \par \vspace{4pt}
+
+\textbf{Machine Learning Engineer \& Associate Python Developer} \hfill \textit{DataCamp} \par \vspace{4pt}
+
+\textbf{Professional DevOps Path} \hfill \textit{CódigoFacilito} \par \vspace{4pt}
+
+\textbf{Back-end Specialization} \hfill \textit{Oracle Next Education (ONE) G7} \par \vspace{4pt}
+
+\textbf{OCI Foundations Associate 2025} \hfill \textit{Oracle} \par
+
+\end{document}

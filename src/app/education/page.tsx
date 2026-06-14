@@ -1,17 +1,17 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { useLanguage } from '@/context/LanguageContext';
 import Image from 'next/image';
-import Link from 'next/link';
-import { ArrowLeft, ExternalLink, Award } from 'lucide-react';
+import { ExternalLink, Award } from 'lucide-react';
+import BackButton from '@/components/ui/BackButton';
 
 // Tipos para las categorías
-type TabKey = 'utm' | 'alura' | 'datacamp' | 'nasa' | 'platzi' | 'others';
+type TabKey = 'all' | 'utm' | 'alura' | 'datacamp' | 'nasa' | 'platzi' | 'hackods' | 'codigo_facilito' | 'waylearn' | 'others';
 
 export default function EducationPage() {
   const { content } = useLanguage();
-  const [activeTab, setActiveTab] = useState<TabKey>('alura');
+  const [activeTab, setActiveTab] = useState<TabKey>('all');
 
   // DATA
   const education = content?.education || {};
@@ -24,58 +24,92 @@ export default function EducationPage() {
     viewCert: content?.sections?.education?.viewCert || 'View'
   };
 
-  const activeData = education[activeTab] || [];
-
   // --- MAPEO A TUS VARIABLES CSS EXACTAS ---
   const TAB_COLORS: Record<TabKey, string> = {
+    all: 'var(--color-gruvbox-red)',
     utm: 'var(--color-gruvbox-aqua)',
     alura: 'var(--color-gruvbox-blue)',
     datacamp: 'var(--color-gruvbox-green)',
     nasa: 'var(--color-gruvbox-purple)',
-    platzi: 'var(--color-gruvbox-yellow)', 
-    others: 'var(--color-gruvbox-orange)',
+    platzi: 'var(--color-gruvbox-yellow)',
+    unam: 'var(--color-gruvbox-orange)',
+    codigo_facilito: 'var(--color-gruvbox-aqua)',
+    waylearn: 'var(--color-gruvbox-purple)',
+    others: 'var(--color-gruvbox-gray)',
   };
 
   // Color actual para usar en bordes y textos dinámicos
   const activeColorVar = TAB_COLORS[activeTab];
 
+  // Logic to calculate active data
+  const activeData = useMemo(() => {
+    if (activeTab !== 'all') {
+      return education[activeTab] || [];
+    }
+
+    // "All" tab logic: gather all certs, featured first, then randomized others
+    const allCerts = Object.keys(education).reduce((acc: any[], key) => {
+      return acc.concat(education[key as keyof typeof education] || []);
+    }, []);
+
+    const featuredCerts = allCerts.filter(cert => cert.featured);
+    
+    // Sort featured by exact requested order
+    const requestedOrder = ['oth-2', 'utm-4', 'dc-8', 'alura-8', 'dc-1', 'oth-1'];
+    featuredCerts.sort((a, b) => {
+      const indexA = requestedOrder.indexOf(a.id);
+      const indexB = requestedOrder.indexOf(b.id);
+      if (indexA === -1 && indexB === -1) return 0;
+      if (indexA === -1) return 1;
+      if (indexB === -1) return -1;
+      return indexA - indexB;
+    });
+
+    const otherCerts = allCerts.filter(cert => !cert.featured);
+
+    // Shuffle non-featured
+    const shuffledOthers = [...otherCerts].sort(() => Math.random() - 0.5);
+
+    return [...featuredCerts, ...shuffledOthers];
+  }, [activeTab, education]);
+
+  // Available tabs (All + keys that exist in data and have items)
+  const availableTabs = useMemo(() => {
+    const tabs: TabKey[] = ['all'];
+    const keys = Object.keys(education);
+    for (const key of keys) {
+      if (education[key as keyof typeof education] && (education[key as keyof typeof education] as any[]).length > 0) {
+        tabs.push(key as TabKey);
+      }
+    }
+    return tabs;
+  }, [education]);
+
   return (
     <main className="min-h-screen pt-12 pb-20 px-4 bg-[var(--bg-page)] text-[var(--text-main)]">
       <div className="container mx-auto max-w-7xl">
         
-        {/* --- 1. BOTÓN cd .. --- */}
-        <div className="mb-12 animate-in fade-in slide-in-from-left-4 duration-500">
-            <Link 
-                href="/#education" 
-                className="group inline-flex items-center gap-4 font-mono font-bold transition-colors
-                  text-4xl md:text-5xl 
-                  text-gruvbox-gray hover:text-gruvbox-blue"
-            >
-                <ArrowLeft className="w-10 h-10 md:w-14 md:h-14 transition-transform group-hover:-translate-x-3" /> 
-                <span>cd ..</span>
-            </Link>
-        </div>
-
-        {/* --- 2. HEADER --- */}
-        <header className="mb-12 border-b border-[var(--border-color)] pb-8 animate-in fade-in slide-in-from-bottom-4 duration-700 delay-100">
-          <h1 className="text-3xl md:text-4xl font-bold mb-3 flex items-center gap-3 text-[var(--text-heading)]">
-            <span className="text-gruvbox-blue dark:text-gruvbox-blue-bright">~/</span> 
-            {ui.title}
-          </h1>
-          <p className="text-lg opacity-70 text-[var(--text-main)] max-w-2xl">
-            {ui.subtitle}
-          </p>
+        <header className="mb-12 border-b border-[var(--border-color)] pb-8 flex flex-col md:flex-row md:items-start gap-6 lg:gap-8 animate-in fade-in slide-in-from-bottom-4 duration-700 delay-100">
+          <div className="pt-2">
+            <BackButton href="/#education" label="cd .." />
+          </div>
+          <div>
+            <h1 className="text-3xl md:text-4xl font-bold mb-3 flex items-center gap-3 text-[var(--text-heading)]">
+              <span className="text-gruvbox-blue dark:text-gruvbox-blue-bright">~/</span> 
+              {ui.title}
+            </h1>
+            <p className="text-lg opacity-70 text-[var(--text-main)] max-w-2xl">
+              {ui.subtitle}
+            </p>
+          </div>
         </header>
 
-        {/* --- 3. TABS (PESTAÑAS) CORREGIDAS --- */}
+        {/* --- 3. TABS (PESTAÑAS) --- */}
         <div className="flex overflow-x-auto pb-4 gap-4 mb-12 animate-in fade-in slide-in-from-bottom-4 duration-500 scrollbar-hide">
-          {Object.keys(education).map((key) => {
-            const tabKey = key as TabKey;
-            // Verificar si hay datos
-            if (!education[tabKey] || education[tabKey].length === 0) return null;
-
+          {availableTabs.map((tabKey) => {
             const isActive = activeTab === tabKey;
             const colorVar = TAB_COLORS[tabKey];
+            const tabName = tabKey === 'all' ? 'All' : ((uiTabs as any)[tabKey] || tabKey.toUpperCase());
 
             return (
               <button
@@ -90,12 +124,10 @@ export default function EducationPage() {
                 className={`px-6 py-2 rounded font-mono font-bold transition-all border-2 whitespace-nowrap
                   ${isActive 
                     ? 'shadow-[4px_4px_0px_0px_rgba(0,0,0,0.5)] translate-x-[-2px] translate-y-[-2px]' 
-                    : 'hover:opacity-80' // Hover simple ya que el color lo maneja el style si quisiéramos complicarlo más
+                    : 'hover:opacity-80'
                   }`}
-                // Hack para hover color: en CSS puro es difícil con vars dinámicas inline, 
-                // así que mantenemos el hover simple de opacidad o borde blanco por defecto.
               >
-                {uiTabs[tabKey] || tabKey.toUpperCase()}
+                {tabName}
               </button>
             );
           })}
@@ -106,14 +138,10 @@ export default function EducationPage() {
           
           {activeData.map((cert: any, index: number) => (
             <div 
-              key={cert.id}
+              key={cert.id + '-' + index}
               className="group relative bg-[var(--bg-card)] border border-[var(--border-color)] rounded-lg overflow-hidden transition-all duration-300 hover:shadow-lg flex flex-col"
               style={{ 
                 animationDelay: `${index * 50}ms`,
-                // Usamos variables CSS para controlar el hover color dinámicamente mediante style
-                // (Requiere un pequeño truco: aplicamos el color al borde en hover usando style no es posible directamente sin eventos)
-                // Solución: Usamos un borde transparente por defecto y confiamos en el borde estático o usamos un estilo inline para borderColor.
-                // Para mantenerlo simple y funcional visualmente:
                 borderColor: 'var(--border-color)' 
               }}
             >
@@ -133,6 +161,7 @@ export default function EducationPage() {
                      src={cert.image}
                      alt={cert.title}
                      fill
+                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                      className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
                    />
                 )}
@@ -147,9 +176,6 @@ export default function EducationPage() {
               <div className="p-5 flex flex-col flex-grow">
                 <h3 
                   className="font-bold text-lg mb-2 text-[var(--text-heading)] leading-tight transition-colors"
-                  // Truco: cambiar color al hover mediante style en el elemento padre es complejo,
-                  // así que usamos style condicional o clase genérica. 
-                  // Para este caso, dejaremos el título en el color heading normal para limpieza.
                 >
                   {cert.title}
                 </h3>

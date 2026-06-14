@@ -3,6 +3,7 @@ import { getPostBySlug } from '@/lib/mdx';
 import { MDXRemote } from 'next-mdx-remote/rsc';
 import { notFound } from 'next/navigation';
 import { ArrowLeft, Calendar, Clock, Hash, Share2 } from 'lucide-react';
+import BackButton from '@/components/ui/BackButton';
 
 // === PLUGINS ===
 // remarkUnwrapImages: Evita el error de hidratación (<div> dentro de <p>) sacando las imgs de los párrafos.
@@ -71,13 +72,7 @@ export default async function BlogPost({ params }: Props) {
           
           {/* Navegación tipo terminal (Solo Desktop) */}
           <div className="hidden lg:block mb-6">
-            <Link 
-              href="/blog" 
-              className="inline-flex items-center gap-2 text-[#928374] hover:text-[#d65d0e] font-mono text-xs transition-colors group"
-            >
-              <span className="text-[#98971a] opacity-50">$</span>
-              <span className="group-hover:underline decoration-2 underline-offset-4">cd ..</span>
-            </Link>
+            <BackButton href="/blog" label="cd .." />
           </div>
 
           {/* Header del Artículo */}

@@ -2,8 +2,7 @@
 
 import { useLanguage } from '@/context/LanguageContext';
 import ProjectCard from '@/components/ui/ProjectCard';
-import Link from 'next/link';
-import { ArrowLeft } from 'lucide-react';
+import BackButton from '@/components/ui/BackButton';
 
 export default function AllProjectsPage() {
   const { content } = useLanguage();
@@ -30,30 +29,21 @@ export default function AllProjectsPage() {
     <main className="min-h-screen pt-24 pb-20 px-4 bg-[var(--bg-page)] text-[var(--text-main)]">
       <div className="container mx-auto max-w-7xl">
         
-        {/* --- TU BOTÓN cd .. --- */}
-        <div className="mb-12 animate-in fade-in slide-in-from-left-4 duration-500">
-            <Link 
-                href="/#projects" 
-                className="group inline-flex items-center gap-4 font-mono font-bold transition-colors
-                  text-4xl md:text-5xl 
-                  text-gruvbox-gray hover:text-gruvbox-orange
-                  dark:hover:text-gruvbox-orange-bright"
-            >
-                <ArrowLeft className="w-10 h-10 md:w-14 md:h-14 transition-transform group-hover:-translate-x-3" /> 
-                <span>cd ..</span>
-            </Link>
-        </div>
-
-        {/* ENCABEZADO */}
-        <header className="mb-16 animate-in fade-in slide-in-from-bottom-4 duration-700 delay-100">
-          <h1 className="text-4xl md:text-5xl font-bold mb-6 text-[var(--text-heading)]">
-            <span className="text-gruvbox-orange dark:text-gruvbox-orange-bright">~/</span> 
-            {ui.title}
-          </h1>
-          <p className="text-xl max-w-2xl opacity-80 text-[var(--text-main)]">
-            {ui.subtitle}
-          </p>
-          <div className="h-1 w-20 bg-gruvbox-yellow mt-8 rounded-full" />
+        {/* ENCABEZADO Y BOTÓN */}
+        <header className="mb-16 flex flex-col md:flex-row md:items-start gap-6 lg:gap-8 animate-in fade-in slide-in-from-bottom-4 duration-700 delay-100">
+          <div className="pt-2">
+            <BackButton href="/#projects" label="cd .." />
+          </div>
+          <div>
+            <h1 className="text-4xl md:text-5xl font-bold mb-4 text-[var(--text-heading)]">
+              <span className="text-gruvbox-orange dark:text-gruvbox-orange-bright">~/</span> 
+              {ui.title}
+            </h1>
+            <p className="text-xl max-w-2xl opacity-80 text-[var(--text-main)]">
+              {ui.subtitle}
+            </p>
+            <div className="h-1 w-20 bg-gruvbox-yellow mt-6 rounded-full" />
+          </div>
         </header>
 
         {/* GRID DE PROYECTOS */}

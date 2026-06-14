@@ -1,7 +1,8 @@
 import Link from 'next/link';
 import Image from 'next/image'; // Importamos Image de Next.js
 import { getAllPosts } from '@/lib/mdx';
-import { Calendar, Tag, ArrowRight, Search, ArrowLeft} from 'lucide-react';
+import { Calendar, Tag, ArrowRight, Search } from 'lucide-react';
+import BackButton from '@/components/ui/BackButton';
 
 export const metadata = {
   title: 'Blog | Mario Ramírez',
@@ -15,40 +16,31 @@ export default function BlogPage() {
     <main className="min-h-screen bg-[var(--bg-page)] pt-20 pb-15 px-1 sm:px-6 lg:px-8 transition-colors duration-300">
       <div className="max-w-7xl mx-auto">
         
-        <div className="mb-8 animate-in fade-in slide-in-from-left-4 duration-500">
-            <Link 
-                href="/" 
-                className="group inline-flex items-center gap-4 font-mono font-bold transition-colors
-                  text-xl md:text-2xl 
-                  text-gruvbox-gray hover:text-gruvbox-purple
-                  dark:hover:text-gruvbox-purple-bright"
-            >
-                <ArrowLeft className="w-8 h-8 md:w-8 md:h-8 transition-transform group-hover:-translate-x-3" /> 
-                <span>cd ..</span>
-            </Link>
-        </div>
-
         {/* === HEADER === */}
         <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6 animate-in fade-in slide-in-from-bottom-4 duration-700">
-          <div>
-            <h1 className="text-4xl md:text-5xl font-bold text-[var(--text-heading)] mb-4">
-              <span className="text-gruvbox-purple">~/</span>blog
-            </h1>
-            <p className="text-lg text-[var(--text-main)] opacity-70 max-w-2xl">
-              Bitácora de desarrollo. Aquí comparto mis experiencias con Linux,
-              soluciones a problemas oscuros y guías de DevOps.
-            </p>
+          <div className="flex flex-col md:flex-row md:items-start gap-6 lg:gap-8 w-full">
+            <div className="pt-2">
+              <BackButton href="/" label="cd .." />
+            </div>
+            <div>
+              <h1 className="text-4xl md:text-5xl font-bold text-[var(--text-heading)] mb-4">
+                <span className="text-gruvbox-purple">~/</span>blog
+              </h1>
+              <p className="text-lg text-[var(--text-main)] opacity-70 max-w-2xl">
+                Bitácora de desarrollo. Aquí comparto mis experiencias con Linux,
+                soluciones a problemas oscuros y guías de DevOps.
+              </p>
+            </div>
           </div>
           
           {/* Barra de búsqueda decorativa (funcionalidad futura) */}
-          <div className="relative group w-full md:w-auto">
-             <div className="absolute -inset-0.5 bg-gradient-to-r from-gruvbox-green to-gruvbox-blue rounded-lg blur opacity-25 group-hover:opacity-75 transition duration-500"></div>
-             <div className="relative flex items-center bg-[var(--bg-page)] rounded-lg px-4 py-3 border border-[var(--border-color)] w-full md:w-72">
+          <div className="w-full md:w-auto">
+             <div className="flex items-center bg-[var(--bg-card)] px-4 py-3 border-2 border-[var(--border-color)] w-full md:w-72">
                 <Search size={18} className="text-gruvbox-gray mr-3" />
                 <input 
                   type="text" 
                   placeholder="grep 'linux'..." 
-                  className="bg-transparent border-none outline-none text-sm w-full text-[var(--text-main)] placeholder-gray-500 font-mono"
+                  className="bg-transparent border-none outline-none text-sm w-full text-[var(--text-main)] placeholder-gruvbox-gray font-mono"
                   disabled
                 />
              </div>
@@ -85,7 +77,7 @@ export default function BlogPage() {
                 )}
                 
                 {/* Overlay fecha */}
-                <div className="absolute top-4 right-4 bg-[var(--bg-page)]/90 backdrop-blur-sm border border-[var(--border-color)] px-3 py-1 rounded text-xs font-mono font-bold text-gruvbox-gray shadow-sm">
+                <div className="absolute top-4 right-4 bg-gruvbox-yellow border-2 border-[var(--border-color)] px-3 py-1 text-xs font-mono font-bold text-gruvbox-dark0 shadow-[4px_4px_0_0_var(--border-color)]">
                    {post.meta.date}
                 </div>
               </div>

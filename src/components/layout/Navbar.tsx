@@ -23,42 +23,42 @@ export default function Navbar() {
   const navLinks = [
     { 
       name: navbar.projects, 
-      href: '#projects', 
+      href: '/#projects', 
       icon: Code2, 
       desktopClass: 'hover:bg-gruvbox-green-bright border-gruvbox-green',
       mobileClass: 'border-gruvbox-green text-gruvbox-green'
     },
     { 
       name: navbar.skills, 
-      href: '#skills', 
+      href: '/#skills', 
       icon: Terminal, 
       desktopClass: 'hover:bg-gruvbox-yellow-bright border-gruvbox-yellow',
       mobileClass: 'border-gruvbox-yellow text-gruvbox-yellow'
     },
     { 
       name: navbar.experience, 
-      href: '#experience', 
+      href: '/#experience', 
       icon: Briefcase, 
       desktopClass: 'hover:bg-gruvbox-blue-bright border-gruvbox-blue',
       mobileClass: 'border-gruvbox-blue text-gruvbox-blue'
     },
     { 
       name: navbar.education || (lang === 'en' ? 'Education' : 'Educación'), 
-      href: '#education', 
+      href: '/#education', 
       icon: GraduationCap, 
       desktopClass: 'hover:bg-gruvbox-orange-bright border-gruvbox-orange',
       mobileClass: 'border-gruvbox-orange text-gruvbox-orange'
     },
     { 
       name: navbar.about, 
-      href: '#about', 
+      href: '/#about', 
       icon: User, 
       desktopClass: 'hover:bg-gruvbox-aqua-bright border-gruvbox-aqua',
       mobileClass: 'border-gruvbox-aqua text-gruvbox-aqua'
     },
     { 
       name: navbar.contact || (lang === 'en' ? 'Contact' : 'Contacto'), 
-      href: '#contact', 
+      href: '/#contact', 
       icon: Mail, 
       desktopClass: 'hover:bg-gruvbox-gray-light border-gruvbox-gray',
       mobileClass: 'border-gruvbox-gray text-gruvbox-gray'
@@ -80,12 +80,13 @@ export default function Navbar() {
   ];
 
   const handleLanguageToggle = () => {
-    setLang(lang === 'en' ? 'es' : 'en');
+    const nextLang = lang === 'en' ? 'es' : 'en';
+    setLang(nextLang);
   };
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md border-b transition-colors duration-300
-      bg-[var(--bg-page)]/95 border-[var(--border-color)]"
+    <nav className="fixed top-0 left-0 right-0 z-50 border-b-4 transition-colors duration-300
+      bg-[var(--bg-page)] border-gruvbox-dark2 dark:border-gruvbox-dark2"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16 items-center">
@@ -109,7 +110,7 @@ export default function Navbar() {
                 key={link.name} 
                 href={link.href}
                 //target={link.name === 'CV' ? '_blank' : undefined}
-                className={`flex items-center gap-2 px-3 py-1.5 border-b-2 text-[11px] font-black uppercase tracking-tighter transition-all 
+                className={`flex items-center gap-1.5 px-2.5 py-1.5 border-b-2 text-xs font-black uppercase tracking-tighter transition-all 
                 bg-[var(--bg-card)] text-[var(--text-main)] hover:text-gruvbox-dark0 
                 ${link.desktopClass}`}
               >
@@ -122,16 +123,18 @@ export default function Navbar() {
 
             {/* Controles Desktop */}
             <button 
+              type="button"
               onClick={handleLanguageToggle}
-              className="flex items-center gap-2 px-3 py-1.5 border border-gruvbox-orange text-gruvbox-orange-bright text-[10px] font-bold rounded hover:bg-gruvbox-orange-bright hover:text-gruvbox-dark0 transition-all uppercase bg-[var(--bg-card)]"
+              className="flex items-center gap-2 px-3 py-1.5 border border-gruvbox-orange text-gruvbox-orange-bright text-[10px] font-bold rounded hover:bg-gruvbox-orange-bright hover:text-gruvbox-dark0 transition-all uppercase bg-[var(--bg-card)] relative z-10 cursor-pointer"
             >
               <Languages size={14} />
-              {lang === 'en' ? 'EN' : 'ES'}
+              {mounted ? (lang === 'en' ? 'EN' : 'ES') : 'ES'}
             </button>
 
             <button 
+              type="button"
               onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-              className="p-2 text-gruvbox-yellow-bright hover:bg-[var(--bg-card)] rounded-md transition-colors"
+              className="p-2 text-gruvbox-yellow-bright hover:bg-[var(--bg-card)] rounded-md transition-colors relative z-10 cursor-pointer"
               aria-label="Toggle Theme"
             >
               {mounted && (theme === 'dark' ? <Sun size={18} /> : <Moon size={18} className="text-gruvbox-dark0" />)}
@@ -143,10 +146,11 @@ export default function Navbar() {
             
             {/* 1. Botón Idioma Móvil */}
             <button 
+              type="button"
               onClick={handleLanguageToggle}
-              className="flex items-center gap-1 px-2 py-1.5 rounded border border-gruvbox-orange/50 text-gruvbox-orange text-xs font-bold active:scale-95 bg-[var(--bg-card)]"
+              className="flex items-center gap-1 px-2 py-1.5 rounded border border-gruvbox-orange/50 text-gruvbox-orange text-xs font-bold active:scale-95 bg-[var(--bg-card)] relative z-10 cursor-pointer"
             >
-               <span className="uppercase">{lang}</span>
+               <span className="uppercase">{mounted ? lang : 'es'}</span>
             </button>
 
             {/* 2. Botón Tema Móvil */}

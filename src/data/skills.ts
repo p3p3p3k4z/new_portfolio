@@ -29,6 +29,12 @@ const icons = {
   fedora: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fedora/fedora-original.svg",
   opensuse: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/opensuse/opensuse-original.svg",
   godot: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/godot/godot-original.svg",
+  nodejs: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg",
+  express: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg",
+  rust: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/rust/rust-plain.svg",
+  pandas: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original.svg",
+  jupyter: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jupyter/jupyter-original.svg",
+  kubernetes: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-plain.svg",
 };
 
 // Estructura común para reutilizar los items y solo cambiar el título
@@ -51,9 +57,9 @@ const webSkills = [
 const backendSkills = [
   { name: "Java", icon: icons.java },
   { name: "Spring Boot", icon: icons.spring },
-  { name: "Python", icon: icons.python },
-  { name: "PHP", icon: icons.php },
-  { name: "C++", icon: icons.cpp },
+  { name: "Node.js", icon: icons.nodejs },
+  { name: "Express", icon: icons.express, invertDark: true },
+  { name: "Rust", icon: icons.rust, invertDark: true },
   { name: "C", icon: icons.c },
 ];
 
@@ -65,6 +71,7 @@ const dbSkills = [
 
 const devopsSkills = [
   { name: "Docker", icon: icons.docker },
+  { name: "Kubernetes", icon: icons.kubernetes },
   { name: "Linux", icon: icons.linux },
   { name: "Oracle Cloud", icon: icons.oracle },
   { name: "AWS", icon: icons.aws, invertDark: true },
@@ -80,11 +87,18 @@ const gameSkills = [
   { name: "Godot", icon: icons.godot },
 ];
 
+const dataScienceSkills = [
+  { name: "Python", icon: icons.python },
+  { name: "Pandas", icon: icons.pandas },
+  { name: "Jupyter", icon: icons.jupyter },
+];
+
 export const skillsData = {
   es: [
     { title: "Desarrollo Móvil", skills: mobileSkills },
     { title: "Desarrollo Web", skills: webSkills },
     { title: "Backend y Sistemas", skills: backendSkills },
+    { title: "Data Science & ML", skills: dataScienceSkills },
     { title: "Bases de Datos", skills: dbSkills },
     { title: "DevOps y Cloud", skills: devopsSkills },
     { title: "Videojuegos", skills: gameSkills },
@@ -93,6 +107,7 @@ export const skillsData = {
     { title: "Mobile Development", skills: mobileSkills },
     { title: "Web Development", skills: webSkills },
     { title: "Backend & Systems", skills: backendSkills },
+    { title: "Data Science & ML", skills: dataScienceSkills },
     { title: "Databases", skills: dbSkills },
     { title: "DevOps & Cloud", skills: devopsSkills },
     { title: "Game Dev", skills: gameSkills },

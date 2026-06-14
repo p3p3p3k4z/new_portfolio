@@ -16,10 +16,10 @@ export default function ProjectCard({ project }: { project: any }) {
   if (!project) return null;
 
   return (
-    <div className="group relative flex flex-col h-full rounded-lg overflow-hidden border transition-all duration-500
-      border-[var(--border-color)]
+    <div className="group relative flex flex-col h-full rounded-lg overflow-hidden border-2 transition-all duration-200
+      border-[var(--border-color)] bg-[var(--bg-card)]
       hover:border-gruvbox-orange dark:hover:border-gruvbox-orange-bright
-      hover:shadow-xl hover:-translate-y-1"
+      hover:shadow-[8px_8px_0_0_#d65d0e] dark:hover:shadow-[8px_8px_0_0_#fe8019] hover:-translate-y-1 hover:-translate-x-1"
     >
       
       {/* 1. IMAGEN DE FONDO */}
@@ -33,12 +33,12 @@ export default function ProjectCard({ project }: { project: any }) {
             className="object-cover transition-opacity duration-500"
           />
         )}
-        {/* Overlay oscuro */}
+        {/* Overlay oscuro para legibilidad (Restaurado) */}
         <div className="absolute inset-0 bg-gruvbox-dark0/90 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
       </div>
 
       {/* 2. FONDO SÓLIDO (Capa base para que no se vea transparente) */}
-      <div className="absolute inset-0 z-10 transition-opacity duration-500 group-hover:opacity-0 bg-[var(--bg-card)]" />
+      <div className="absolute inset-0 z-10 transition-transform duration-500 group-hover:translate-y-full bg-[var(--bg-card)]" />
 
       {/* 3. CONTENIDO */}
       <div className="relative z-20 flex flex-col h-full">
@@ -72,7 +72,7 @@ export default function ProjectCard({ project }: { project: any }) {
             {project.title}
           </h3>
 
-          <p className="text-sm mb-6 flex-grow line-clamp-3 leading-relaxed transition-colors duration-300
+          <p className="text-base mb-6 flex-grow line-clamp-3 leading-relaxed transition-colors duration-300
             text-[var(--text-main)] group-hover:text-gruvbox-light1">
             {project.description}
           </p>
@@ -80,9 +80,9 @@ export default function ProjectCard({ project }: { project: any }) {
           <div className="flex flex-wrap gap-2 mb-6">
             {project.technologies?.slice(0, 4).map((tech: string) => (
               <span key={tech} className="px-2 py-1 text-[10px] font-mono font-bold rounded border transition-colors
-                  text-gruvbox-blue bg-gruvbox-blue/10 border-gruvbox-blue/20
-                  dark:text-gruvbox-blue-bright dark:bg-gruvbox-blue/10 dark:border-gruvbox-blue/20
-                  group-hover:text-gruvbox-aqua-bright group-hover:bg-gruvbox-aqua-bright/10 group-hover:border-gruvbox-aqua-bright/30">
+                  text-gruvbox-blue bg-transparent border-gruvbox-blue
+                  dark:text-gruvbox-blue-bright dark:bg-transparent dark:border-gruvbox-blue-bright
+                  group-hover:text-gruvbox-dark0 group-hover:bg-gruvbox-aqua-bright group-hover:border-gruvbox-aqua-bright">
                 {tech}
               </span>
             ))}

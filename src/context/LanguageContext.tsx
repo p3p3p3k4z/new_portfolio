@@ -54,12 +54,22 @@ export const LanguageProvider = ({ children }: { children: React.ReactNode }) =>
     const saved = localStorage.getItem('selectedLanguage') as Language;
     if (saved && (saved === 'es' || saved === 'en')) {
       setLangState(saved);
+    } else {
+      // Detección automática del idioma del navegador
+      const browserLang = navigator.language || navigator.languages?.[0];
+      if (browserLang && browserLang.toLowerCase().startsWith('en')) {
+        setLangState('en');
+      }
     }
   }, []);
 
   const setLang = (l: Language) => {
     setLangState(l);
-    localStorage.setItem('selectedLanguage', l);
+    try {
+      localStorage.setItem('selectedLanguage', l);
+    } catch (error) {
+      console.warn("localStorage not available");
+    }
   };
 
   return (

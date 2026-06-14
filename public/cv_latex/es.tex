@@ -1,0 +1,129 @@
+\documentclass[a4paper,11pt]{article}
+
+% --- PAQUETES ---
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[default]{lato}
+\usepackage[top=0.8cm, bottom=0.8cm, left=1.2cm, right=1.2cm]{geometry} % Márgenes ligeramente más compactos
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{fontawesome5}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{parskip}
+
+% --- COLORES ---
+\definecolor{darkgrey}{RGB}{40,40,40}
+\definecolor{accent}{RGB}{204, 36, 29} 
+
+% --- CONFIGURACIÓN ---
+\hypersetup{colorlinks=true, linkcolor=accent, urlcolor=accent}
+\setlength{\parindent}{0pt}
+
+% Espaciado de secciones más ajustado
+\titlespacing*{\section}{0pt}{6pt}{2pt}
+\titleformat{\section}{\large\bfseries\color{darkgrey}\uppercase}{}{0em}{}[\titlerule]
+
+% --- COMANDOS PERSONALIZADOS (Espaciado reducido) ---
+\newcommand{\entry}[4]{
+  \vspace{1pt}
+  {\bfseries #1} \textbullet\ \textit{#2} \hfill \textbf{\footnotesize #3} \\
+  {\small #4} \par 
+  \vspace{2pt}
+}
+
+\newcommand{\project}[3]{
+  \vspace{1pt}
+  {\bfseries #1} \hfill \textit{\footnotesize #2} \\
+  {\small #3} \par
+  \vspace{2pt}
+}
+
+\newcommand{\award}[3]{
+  \vspace{1pt}
+  {\bfseries #1} \hfill \textbf{\footnotesize #2} \\
+  {\small #3} \par
+  \vspace{1pt}
+}
+
+% --- DOCUMENTO ---
+\begin{document}
+\pagestyle{empty}
+
+% --- ENCABEZADO ---
+\begin{center}
+    {\LARGE \textbf{Mario Enrique Ramírez Gallardo}} \\ \vspace{1pt}
+    {\large Ingeniero de Software | Product Builder} \\ \vspace{3pt}
+    
+    \small
+    \faEnvelope\ \href{mailto:ragm030119@gs.utm.mx}{ragm030119@gs.utm.mx} \quad \textbullet \quad
+    \faPhone\ (+52) 951 119 6182 \quad \textbullet \quad
+    \faGithub\ \href{https://github.com/p3p3p3k4z}{p3p3p3k4z} \quad \textbullet \quad
+    \faLinkedin\ \href{https://www.linkedin.com/in/mario-ramirez-abab9a318/}{/in/mario-ramirez} \\
+    \faGlobe\ \href{https://marioramirez-dev.vercel.app/}{marioramirez-dev.vercel.app}
+\end{center}
+
+\vspace{-8pt}
+
+% --- SOBRE MÍ ---
+\section*{Sobre mí}
+\small Desarrollador de software con sólida base en Ingeniería en Computación y dominio de entornos Linux. Especializado en la arquitectura y construcción de aplicaciones Web y Móviles. Poseo experiencia práctica en el desarrollo de sistemas y la creación de componentes modulares. Destaco por mi capacidad analítica para resolver problemas complejos bajo presión, enfocándome en entregar código escalable, mantenible y soluciones orientadas a resultados.
+
+% --- EXPERIENCIA ---
+\section*{Experiencia Profesional}
+
+\entry{Teteocan Technologies}{Pasante de Desarrollo de Software}{Abr 2025 -- Sept 2025}
+{Arquitecté soluciones móviles multiplataforma con \textbf{Flutter} y \textbf{Dart}, construyendo componentes modulares que aceleraron el ciclo de desarrollo. Diseñé la infraestructura en \textbf{Firebase} con sincronización en tiempo real, estructurando las reglas de seguridad y optimizando el esquema de base de datos para reducir significativamente la latencia en consultas críticas, garantizando la escalabilidad de la app.}
+
+% --- PROYECTOS ---
+\section*{Proyectos Destacados}
+
+\project{\href{https://github.com/p3p3p3k4z/a-u-ita}{Añi Ita (Soul of the Flower) \faGithub}}{Python, Web, Datos NASA}{
+Motor de restauración ambiental con datos satelitales \textbf{Landsat/MODIS} para automatizar el diseño de "Islas Polinizadoras". Incluye modelos predictivos de flora y un "Modo Abeja" inmersivo en 3D para validación visual.}
+
+\project{\href{https://github.com/p3p3p3k4z/huellazo-solana}{Huellazo (Solana LATAM Hackathon) \faGithub}}{React, Solana, Rust, NFTs}{
+Plataforma de turismo sostenible que gamifica el impacto ecológico mediante blockchain. Desarrollé la integración mediante RPCs personalizados, obteniendo un **pase directo a la fase de incubación**.}
+
+\project{\href{https://github.com/p3p3p3k4z/Haskell-ML-Cat}{Haskell ML Cat \faGithub}}{Haskell, Python, Hasktorch, IPC}{
+Sistema de benchmarking de alto rendimiento. Arquitectura híbrida que conecta un backend funcional en Haskell con una interfaz en Python vía \textbf{IPC}, comparando modelos KNN frente a Deep Learning.}
+
+
+
+% --- LOGROS ---
+\section*{Logros y Premios}
+
+\award{3er Lugar -- CLIHC (Conf. Latinoamericana de Interacción Humano-Computadora)}{2026}{
+Reconocimiento internacional por innovación en diseño y desarrollo de interfaces centradas en el usuario e impacto social.}
+
+\award{Finalista Top 20 -- HackODS UNAM}{2026}{
+Desarrollo de soluciones tecnológicas y visualización de datos utilizando portales de datos abiertos (INEGI, UNAM) para los ODS.}
+
+\award{Top 5 Global -- Bolt x MiniMax VIBE HACKERS}{2025}{
+Desarrollo individual de "Polli Vision", visión artificial para identificación de especies en tiempo real en menos de 48h.}
+
+\award{Ganador Local (4to Lugar) -- NASA Space Apps Challenge}{2024}{
+Desarrollo de "Cozobi", solución para optimización agrícola basada en telemetría geoespacial.}
+
+% --- HABILIDADES ---
+\section*{Habilidades}
+\small
+\textbf{Lenguajes:} Python, JavaScript/TypeScript, Dart, SQL, C, Bash. \\
+\textbf{Infraestructura y Sistemas:} Linux, Docker, Git, CI/CD. \\
+\textbf{Web y Móvil:} React, Next.js, Vite, Tailwind CSS, Flutter. \\
+\textbf{Intereses:} DevOps, Machine Learning, Web3, Desarrollo de Sistemas.
+
+% --- EDUCACIÓN Y CERTIFICACIONES ---
+\section*{Educación y Certificaciones}
+
+\textbf{Ing. en Computación (Prevista 2026)} \hfill \textit{Universidad Tecnológica de la Mixteca} \par \vspace{3pt}
+
+\textbf{Machine Learning Engineer \& Associate Python Developer} \hfill \textit{DataCamp} \par \vspace{3pt}
+
+\textbf{Ruta Profesional DevOps} \hfill \textit{CódigoFacilito} \par \vspace{3pt}
+
+\textbf{Especialización en Back-end} \hfill \textit{Oracle Next Education (ONE) G7} \par \vspace{3pt}
+
+\textbf{OCI Foundations Associate 2025} \hfill \textit{Oracle} \par
+
+\end{document}
