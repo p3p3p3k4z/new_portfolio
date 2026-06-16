@@ -12,6 +12,45 @@ export interface ExperienceItem {
 export const experienceData = {
   es: [
     {
+      id: 'solana-latam',
+      role: 'Desarrollador de Software / Integración Web3',
+      company: 'Solana LATAM Hackathon (Huellazo)',
+      date: 'Abr. 2026 - Jun. 2026',
+      description: [
+        'Diseñé y construí la arquitectura móvil para una plataforma de turismo sostenible que gamifica el impacto ecológico.',
+        'Lideré la integración técnica entre el frontend móvil y la red descentralizada para la gestión de activos digitales.',
+        'Desarrollé la comunicación mediante RPCs personalizados entre React Native y smart contracts en Rust, obteniendo un pase directo a la incubación oficial.'
+      ],
+      technologies: ['React Native', 'Solana SDK', 'Rust', 'Anchor', 'NFTs'],
+      type: 'contest'
+    },
+    {
+      id: 'clihc-2026',
+      role: 'Diseñador UI/UX',
+      company: 'CLIHC (RutaLibre)',
+      date: 'Mayo 2026',
+      description: [
+        'Prototipado interactivo de una solución tecnológica centrada en las personas para mejorar la accesibilidad en el transporte público.',
+        'Diseño de interfaces y experiencia de usuario (UI/UX) basándome en principios de interacción humano-computadora e inclusión social.',
+        'Creación de flujos de navegación y componentes accesibles, obteniendo el 3er Lugar internacional en el hackathon del congreso.'
+      ],
+      technologies: ['Figma', 'Prototyping', 'Material 3', 'UI/UX Design', 'HCI'],
+      type: 'contest'
+    },
+    {
+      id: 'hackods-2026',
+      role: 'Analista de Datos',
+      company: 'HackODS UNAM',
+      date: 'Mar. 2026 - Abril 2026',
+      description: [
+        'Diseño y desarrollo de un tablero (dashboard) analítico para visualizar la pérdida de biodiversidad forestal en Michoacán.',
+        'Limpieza y procesamiento de conjuntos de datos públicos abiertos del INEGI/UNAM utilizando Python y Pandas.',
+        'El proyecto fue seleccionado como Finalista Top 20 (de 77 equipos), visibilizando el impacto en el ODS 15.'
+      ],
+      technologies: ['Python', 'Pandas', 'Plotly', 'Quarto', 'Datos Abiertos'],
+      type: 'contest'
+    },
+    {
       id: 'teteocan-tech',
       role: 'Ingeniero de Software Jr.',
       company: 'Teteocan Technologies',
@@ -93,6 +132,45 @@ export const experienceData = {
   ] as ExperienceItem[],
 
   en: [
+    {
+      id: 'solana-latam',
+      role: 'Software Developer / Web3 Integration',
+      company: 'Solana LATAM Hackathon (Huellazo)',
+      date: 'Apr 2026 - Jun 2026',
+      description: [
+        'Designed and built the mobile architecture for a sustainable tourism platform that gamifies ecological impact.',
+        'Led the technical integration between the mobile frontend and the decentralized network for digital asset management.',
+        'Developed communication via custom RPCs between React Native and Rust smart contracts, securing a direct pass to official incubation.'
+      ],
+      technologies: ['React Native', 'Solana SDK', 'Rust', 'Anchor', 'NFTs'],
+      type: 'contest'
+    },
+    {
+      id: 'clihc-2026',
+      role: 'UI/UX Designer',
+      company: 'CLIHC (RutaLibre)',
+      date: 'May 2026',
+      description: [
+        'Interactive prototyping of a human-centered technological solution to improve accessibility in public transportation.',
+        'User interface and experience (UI/UX) design based on human-computer interaction and social inclusion principles.',
+        'Created accessible navigation flows and components, achieving 3rd Place internationally in the conference hackathon.'
+      ],
+      technologies: ['Figma', 'Prototyping', 'Material 3', 'UI/UX Design', 'HCI'],
+      type: 'contest'
+    },
+    {
+      id: 'hackods-2026',
+      role: 'Data Analyst',
+      company: 'HackODS UNAM (Raíz-Data)',
+      date: 'Mar 2026 - Apr 2026',
+      description: [
+        'Designed and developed an analytical dashboard to visualize forest biodiversity loss in Michoacán.',
+        'Cleaned and processed open public datasets from INEGI/UNAM using Python and Pandas.',
+        'The project was selected as a Top 20 Finalist (out of 77 teams), highlighting its impact on SDG 15.'
+      ],
+      technologies: ['Python', 'Pandas', 'Plotly', 'Quarto', 'Open Data'],
+      type: 'contest'
+    },
     {
       id: 'teteocan-tech',
       role: 'Software Engineer Jr.',

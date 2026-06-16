@@ -65,10 +65,75 @@ const URLS = {
     repo: 'https://github.com/p3p3p3k4z/Haskell-ML-Cat',
     img: 'https://github.com/p3p3p3k4z/Haskell-ML-Cat/raw/main/preview/webcam.png'
   },
+  huellazo: {
+    repo: 'https://github.com/p3p3p3k4z/huellazo-solana',
+    img: 'https://github.com/p3p3p3k4z/huellazo-solana/raw/main/huellazo-app/public/preview/mapa.png'
+  },
+  tuxlab: {
+    repo: 'https://github.com/p3p3p3k4z/TuxLab-Solana',
+    img: undefined
+  },
+  agendario: {
+    repo: 'https://github.com/p3p3p3k4z/Agendario',
+    img: 'https://github.com/p3p3p3k4z/Agendario/raw/main/assets/preview/agenda.jpeg'
+  },
+  tuxescape: {
+    repo: 'https://github.com/p3p3p3k4z/tux_escape',
+    img: 'https://github.com/p3p3p3k4z/tux_escape/raw/main/assets/preview/preview1.jpeg'
+  },
+  utmania: {
+    repo: 'https://github.com/p3p3p3k4z/utmania',
+    img: undefined
+  },
 };
 
 export const projectsData = {
   es: [
+    {
+      id: 'agendario',
+      title: 'Agendario',
+      description: 'Aplicación móvil de productividad minimalista. Cuenta con bóvedas ocultas mediante sensores, editor de stickers interactivo y gestión de notas locales.',
+      technologies: ['Flutter', 'Dart', 'Isar Database', 'State Management'],
+      imageUrl: URLS.agendario.img,
+      githubUrl: URLS.agendario.repo,
+      featured: true
+    },
+    {
+      id: 'tux-escape',
+      title: 'Tux Escape',
+      description: 'Videojuego interactivo desarrollado para plataformas móviles, enfocado en el entretenimiento casual y diseño de niveles.',
+      technologies: ['Flutter', 'Dart', 'Game Dev'],
+      imageUrl: URLS.tuxescape.img,
+      githubUrl: URLS.tuxescape.repo,
+      featured: false
+    },
+    {
+      id: 'utmania',
+      title: 'UTMania',
+      description: 'Aplicación interactiva enfocada en la experiencia estudiantil, proporcionando herramientas y recursos útiles.',
+      technologies: ['Flutter', 'Dart'],
+      imageUrl: URLS.utmania.img,
+      githubUrl: URLS.utmania.repo,
+      featured: false
+    },
+    {
+      id: 'huellazo-solana',
+      title: 'Huellazo',
+      description: 'dApp en Solana que gamifica el turismo sostenible y la economía local mediante un Pasaporte NFT Dinámico.',
+      technologies: ['Solana', 'Rust', 'Anchor', 'Flutter', 'NFT'],
+      imageUrl: URLS.huellazo.img,
+      githubUrl: URLS.huellazo.repo,
+      featured: true
+    },
+    {
+      id: 'tuxlab-solana',
+      title: 'TuxLab Solana',
+      description: 'Sistema de registro técnico basado en blockchain para la auditoría de experimentos y fallos en sistemas operativos Linux.',
+      technologies: ['Solana', 'Rust', 'Linux', 'Blockchain'],
+      imageUrl: URLS.tuxlab.img,
+      githubUrl: URLS.tuxlab.repo,
+      featured: false
+    },
     {
       id: 'agenda-ai',
       title: 'Agenda AI',
@@ -198,6 +263,51 @@ export const projectsData = {
   ],
   
   en: [
+    {
+      id: 'agendario',
+      title: 'Agendario',
+      description: 'Minimalist productivity mobile application. Features hidden vaults using sensors, interactive sticker editor, and local notes management.',
+      technologies: ['Flutter', 'Dart', 'Isar Database', 'State Management'],
+      imageUrl: URLS.agendario.img,
+      githubUrl: URLS.agendario.repo,
+      featured: true
+    },
+    {
+      id: 'tux-escape',
+      title: 'Tux Escape',
+      description: 'Interactive video game developed for mobile platforms, focused on casual entertainment and level design.',
+      technologies: ['Flutter', 'Dart', 'Game Dev'],
+      imageUrl: URLS.tuxescape.img,
+      githubUrl: URLS.tuxescape.repo,
+      featured: false
+    },
+    {
+      id: 'utmania',
+      title: 'UTMania',
+      description: 'Interactive application focused on the student experience, providing useful tools and resources.',
+      technologies: ['Flutter', 'Dart'],
+      imageUrl: URLS.utmania.img,
+      githubUrl: URLS.utmania.repo,
+      featured: false
+    },
+    {
+      id: 'huellazo-solana',
+      title: 'Huellazo',
+      description: 'Solana dApp that gamifies sustainable tourism and the local economy through a Dynamic NFT Passport.',
+      technologies: ['Solana', 'Rust', 'Anchor', 'Flutter', 'NFT'],
+      imageUrl: URLS.huellazo.img,
+      githubUrl: URLS.huellazo.repo,
+      featured: true
+    },
+    {
+      id: 'tuxlab-solana',
+      title: 'TuxLab Solana',
+      description: 'Blockchain-based technical registry system for auditing experiments and failures in Linux operating systems.',
+      technologies: ['Solana', 'Rust', 'Linux', 'Blockchain'],
+      imageUrl: URLS.tuxlab.img,
+      githubUrl: URLS.tuxlab.repo,
+      featured: false
+    },
     {
       id: 'agenda-ai',
       title: 'Agenda AI',
